@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>zardy</title>
+<title>zardy — fan page</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230c0b0d'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-weight='900' font-size='40' fill='%23c1443c' text-anchor='middle'%3Ez%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Fan page no oficial de zardy: biografía, discografía, próximo álbum y más.">
+<meta property="og:title" content="zardy — fan page">
+<meta property="og:description" content="Biografía, discografía y el próximo álbum de zardy — fan page no oficial.">
+<meta property="og:image" content="https://i.scdn.co/image/ab6761610000e5eb261db1a4813a539df598d22e">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0c0b0d">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800;900&family=Work+Sans:wght@400;500;600&display=swap');
 
@@ -214,6 +221,95 @@
   .listen-arrow{ font-size:20px; color:var(--accent); transition:transform .2s; }
   .listen-card:hover .listen-arrow{ transform:translateX(4px); }
 
+  /* ---------- LOADER ---------- */
+  #loader{
+    position:fixed; inset:0; z-index:100; background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  #loader.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  #loader .mark{
+    font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:64px;
+    text-transform:lowercase; color:var(--text); position:relative;
+  }
+  #loader .mark::after{
+    content:""; position:absolute; left:0; bottom:6px; height:4px; width:0%;
+    background:var(--accent); animation:loadbar 1.1s ease forwards;
+  }
+  @keyframes loadbar{ to{ width:100%; } }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .gallery-item{
+    position:relative; aspect-ratio:1/1; overflow:hidden; border:1px solid var(--line); cursor:pointer;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover; filter:grayscale(35%) contrast(1.05);
+    transition:transform .5s ease, filter .3s ease;
+  }
+  .gallery-item:hover img{ transform:scale(1.08); filter:grayscale(0%) contrast(1.05); }
+  .gallery-item .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:10px 12px; font-size:12px; color:#fff;
+    background:linear-gradient(to top, rgba(0,0,0,.75), transparent);
+  }
+  #lightbox{
+    position:fixed; inset:0; z-index:90; background:rgba(6,5,6,.92); display:none;
+    align-items:center; justify-content:center; padding:40px; cursor:zoom-out;
+  }
+  #lightbox.open{ display:flex; }
+  #lightbox img{ max-width:min(560px, 90vw); max-height:80vh; border:1px solid var(--line); }
+
+  /* ---------- SHOWS ---------- */
+  .shows-empty{
+    border:1px dashed var(--line); padding:44px 28px; text-align:center; display:flex; flex-direction:column; gap:14px; align-items:center;
+  }
+  .shows-empty .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); animation:pulse 1.8s infinite; }
+  .shows-empty p{ color:var(--muted); font-size:14.5px; max-width:40ch; }
+  .shows-empty strong{ font-family:'Big Shoulders Display', sans-serif; font-size:22px; font-weight:800; color:var(--text); text-transform:lowercase; }
+
+  /* ---------- NEWSLETTER ---------- */
+  .newsletter-box{
+    border:1px solid var(--line); background:var(--bg-raised); padding:36px; display:grid;
+    grid-template-columns:1fr auto; gap:24px; align-items:center;
+  }
+  .newsletter-box h3{ font-family:'Big Shoulders Display', sans-serif; font-size:26px; font-weight:800; text-transform:lowercase; }
+  .newsletter-box p{ color:var(--muted); font-size:13.5px; margin-top:4px; max-width:44ch; }
+  .newsletter-form{ display:flex; gap:10px; }
+  .newsletter-form input{
+    background:var(--bg); border:1px solid var(--line); color:var(--text); padding:12px 14px; font-family:inherit; font-size:14px; min-width:220px;
+  }
+  .newsletter-form input:focus{ outline:none; border-color:var(--accent); }
+  .newsletter-form button{
+    background:var(--accent); color:#0c0b0d; border:none; font-weight:700; font-size:14px; padding:12px 20px; cursor:pointer; transition:background .2s, transform .2s;
+  }
+  .newsletter-form button:hover{ background:#d85a51; transform:translateY(-2px); }
+  .newsletter-msg{ font-size:13px; color:var(--accent); margin-top:10px; min-height:16px; }
+
+  /* ---------- MINI PLAYER ---------- */
+  #mini-player{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:45; max-width:420px; margin:0 auto;
+    background:var(--bg-raised); border:1px solid var(--line); display:flex; align-items:center; gap:14px;
+    padding:10px 14px; transform:translateY(140%); transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  #mini-player.show{ transform:translateY(0); }
+  #mini-player .art{ width:42px; height:42px; flex-shrink:0; overflow:hidden; border:1px solid var(--line); }
+  #mini-player .art img{ width:100%; height:100%; object-fit:cover; transition:transform 6s linear; }
+  #mini-player.playing .art img{ animation:spin 6s linear infinite; }
+  @keyframes spin{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+  #mini-player .info{ flex:1; min-width:0; }
+  #mini-player .info b{ display:block; font-size:13.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  #mini-player .info span{ font-size:11.5px; color:var(--muted); }
+  #mini-player .bar{ height:2px; background:var(--line); margin-top:6px; position:relative; }
+  #mini-player .bar i{ position:absolute; left:0; top:0; height:100%; width:0%; background:var(--accent); }
+  #play-toggle{
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--text);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:border-color .2s;
+    font-size:13px;
+  }
+  #play-toggle:hover{ border-color:var(--accent); }
+  #mini-player .close{ background:none; border:none; color:var(--muted); cursor:pointer; font-size:16px; flex-shrink:0; }
+
   /* ---------- FOOTER ---------- */
   footer{ padding:40px 0 60px; }
   footer .wrap{ display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:14px; color:var(--muted); font-size:13px; }
@@ -234,10 +330,17 @@
     .tracklist li{ padding-left:48px; }
     .section-head p{ text-align:left; }
     .nav-links{ display:none; }
+    .gallery-grid{ grid-template-columns:1fr 1fr; }
+    .newsletter-box{ grid-template-columns:1fr; }
+    .newsletter-form{ flex-direction:column; }
+    .newsletter-form input{ min-width:0; }
+    #mini-player{ left:10px; right:10px; bottom:10px; }
   }
 </style>
 </head>
 <body>
+
+<div id="loader"><div class="mark">zardy</div></div>
 
 <div id="progress"></div>
 
@@ -248,7 +351,9 @@
       <div class="nav-links">
         <a href="#bio" data-i18n="nav.bio" data-nav>sobre</a>
         <a href="#sonido" data-i18n="nav.sound" data-nav>sonido</a>
+        <a href="#galeria" data-i18n="nav.gallery" data-nav>galería</a>
         <a href="#proximamente" data-i18n="nav.upcoming" data-nav>próximamente</a>
+        <a href="#shows" data-i18n="nav.shows" data-nav>shows</a>
         <a href="#discografia" data-i18n="nav.discog" data-nav>discografía</a>
         <a href="#escucha" data-i18n="nav.listen" data-nav>escucha</a>
       </div>
@@ -314,6 +419,18 @@
   </div>
 </section>
 
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-i18n="gallery.h2">galería</h2>
+      <p data-i18n="gallery.sub">portadas y fotos reales, sacadas de Spotify</p>
+    </div>
+    <div class="gallery-grid reveal" id="gallery-grid"></div>
+  </div>
+</section>
+
+<div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
+
 <section class="section" id="proximamente">
   <div class="wrap">
     <div class="section-head reveal">
@@ -352,6 +469,20 @@
   </div>
 </section>
 
+<section class="section" id="shows">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 data-i18n="shows.h2">shows</h2>
+      <p data-i18n="shows.sub">fechas confirmadas, cuando las haya</p>
+    </div>
+    <div class="shows-empty reveal">
+      <div class="dot"></div>
+      <strong data-i18n="shows.title">sin shows anunciados todavía</strong>
+      <p data-i18n="shows.body">zardy no ha anunciado fechas en vivo. En cuanto anuncie algo esta sección se actualiza — mientras tanto, síguelo en Spotify o suscríbete abajo para enterarte primero.</p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="discografia">
   <div class="wrap">
     <div class="section-head reveal">
@@ -381,12 +512,40 @@
   </div>
 </section>
 
+<section class="section" id="newsletter-section">
+  <div class="wrap">
+    <div class="newsletter-box reveal">
+      <div>
+        <h3 data-i18n="newsletter.h3">no te pierdas nada de zardy</h3>
+        <p data-i18n="newsletter.p">Avisos de nuevos lanzamientos y shows. Sin spam — esto es una demo de fan, no se guarda ni se envía tu correo a ningún lado.</p>
+        <div class="newsletter-msg" id="newsletter-msg"></div>
+      </div>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" required id="newsletter-email" data-i18n-placeholder="newsletter.placeholder" placeholder="tu@email.com">
+        <button type="submit" data-i18n="newsletter.btn">unirme</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <span data-i18n="footer.disclaimer">fan page no oficial — datos de Spotify &amp; Apple Music</span>
     <a href="https://open.spotify.com/artist/5OylQa5tfrpPvkZLoeHPDh" target="_blank" rel="noopener" data-i18n="footer.cta">escuchar en Spotify →</a>
   </div>
 </footer>
+
+<div id="mini-player">
+  <div class="art"><img src="https://i.scdn.co/image/ab67616d0000b27370d46e4919d31f0cc7e051b9" alt="it be okay"></div>
+  <div class="info">
+    <b>it be okay</b>
+    <span id="mp-sub">zardy · preview de Spotify</span>
+    <div class="bar"><i id="mp-progress"></i></div>
+  </div>
+  <button id="play-toggle" aria-label="play/pause">▶</button>
+  <button class="close" id="mp-close" aria-label="cerrar">✕</button>
+</div>
+<audio id="mp-audio" src="https://p.scdn.co/mp3-preview/71ded9e45e0766d754208d1287c89eb5524d69a1" preload="none"></audio>
 
 <script>
   /* ---------------- i18n ---------------- */
@@ -401,6 +560,16 @@
       "bio.p1":"Su sencillo \"it be okay\" (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, de tono melancólico y directo, generó suficiente tracción para justificar una reedición con versiones sped up, slowed e instrumental.",
       "bio.p2":"Antes de eso, había ido soltando sencillos sueltos —\"Cult of katana\", \"Grow\", \"don't play\", \"Rotom\"— construyendo poco a poco una base de oyentes sin depender de un álbum de estudio tradicional, algo común en artistas que crecen primero en redes y después en plataformas de streaming.",
       "sound.h2":"el sonido", "sound.sub":"a qué suena zardy, en pocas palabras",
+      "nav.gallery":"galería", "nav.shows":"shows",
+      "gallery.h2":"galería", "gallery.sub":"portadas y fotos reales, sacadas de Spotify",
+      "shows.h2":"shows", "shows.sub":"fechas confirmadas, cuando las haya",
+      "shows.title":"sin shows anunciados todavía",
+      "shows.body":"zardy no ha anunciado fechas en vivo. En cuanto anuncie algo esta sección se actualiza — mientras tanto, síguelo en Spotify o suscríbete abajo para enterarte primero.",
+      "newsletter.h3":"no te pierdas nada de zardy",
+      "newsletter.p":"Avisos de nuevos lanzamientos y shows. Sin spam — esto es una demo de fan, no se guarda ni se envía tu correo a ningún lado.",
+      "newsletter.placeholder":"tu@email.com", "newsletter.btn":"unirme",
+      "newsletter.thanks":"¡Listo! (recuerda: es una demo, no se envía nada de verdad)",
+      "gallery.cap1":"foto de perfil — Spotify", "gallery.cap2":"portada de \"it be okay\"", "gallery.cap3":"portada de \"contemplating\"",
       "upcoming.h2":"próximamente", "upcoming.sub":"su primer álbum, con cuenta regresiva en vivo",
       "upcoming.badge":"● Álbum · Próximo lanzamiento",
       "upcoming.meta":"zardy · sale el 10 de septiembre de 2026 · 11 canciones",
@@ -428,6 +597,16 @@
       "bio.p1":"His single \"it be okay\" (2026) became many listeners' entry point, driven by fan edits on TikTok tagging it as indie rock / losercore. The moody, direct track gained enough traction to justify a re-release with sped up, slowed, and instrumental versions.",
       "bio.p2":"Before that, he had been dropping standalone singles — \"Cult of katana\", \"Grow\", \"don't play\", \"Rotom\" — slowly building an audience without leaning on a traditional studio album, which is common for artists who grow on social media first and streaming platforms second.",
       "sound.h2":"the sound", "sound.sub":"what zardy sounds like, in a few words",
+      "nav.gallery":"gallery", "nav.shows":"shows",
+      "gallery.h2":"gallery", "gallery.sub":"real cover art and photos, sourced from Spotify",
+      "shows.h2":"shows", "shows.sub":"confirmed dates, whenever there are any",
+      "shows.title":"no shows announced yet",
+      "shows.body":"zardy hasn't announced any live dates. This section will update the moment he does — in the meantime, follow him on Spotify or subscribe below to hear first.",
+      "newsletter.h3":"don't miss anything from zardy",
+      "newsletter.p":"Heads-up on new releases and shows. No spam — this is a fan demo, your email isn't stored or sent anywhere.",
+      "newsletter.placeholder":"you@email.com", "newsletter.btn":"join",
+      "newsletter.thanks":"Done! (reminder: this is a demo, nothing is actually sent)",
+      "gallery.cap1":"profile photo — Spotify", "gallery.cap2":"\"it be okay\" cover art", "gallery.cap3":"\"contemplating\" cover art",
       "upcoming.h2":"coming up", "upcoming.sub":"his debut album, with a live countdown",
       "upcoming.badge":"● Album · Upcoming release",
       "upcoming.meta":"zardy · out September 10, 2026 · 11 songs",
@@ -486,6 +665,29 @@
       chip.className = 'tag-chip';
       chip.textContent = t;
       cloud.appendChild(chip);
+    });
+  }
+
+  const galleryPhotos = [
+    { src: "https://i.scdn.co/image/ab6761610000e5eb261db1a4813a539df598d22e", capKey: "gallery.cap1" },
+    { src: "https://i.scdn.co/image/ab67616d0000b27370d46e4919d31f0cc7e051b9", capKey: "gallery.cap2" },
+    { src: "https://i.scdn.co/image/ab67616d0000b273f31dd6f0d443e3e7525fd34f", capKey: "gallery.cap3" }
+  ];
+
+  function renderGallery(){
+    const grid = document.getElementById('gallery-grid');
+    const t = translations[lang];
+    grid.innerHTML = galleryPhotos.map(p => `
+      <div class="gallery-item" data-src="${p.src}">
+        <img src="${p.src}" alt="${t[p.capKey]}">
+        <div class="cap">${t[p.capKey]}</div>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = item.getAttribute('data-src');
+        document.getElementById('lightbox').classList.add('open');
+      });
     });
   }
 
@@ -574,6 +776,9 @@
     renderReleases();
     renderMarquee();
     renderUpcomingTracklist();
+    renderGallery();
+    const emailInput = document.getElementById('newsletter-email');
+    if (emailInput) emailInput.placeholder = translations[lang]['newsletter.placeholder'];
     tickCountdown();
   }
 
@@ -646,6 +851,65 @@
   }
   document.addEventListener('scroll', updateProgress);
   updateProgress();
+
+  /* ---------------- loader ---------------- */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
+  });
+
+  /* ---------------- lightbox ---------------- */
+  const lightbox = document.getElementById('lightbox');
+  lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+
+  /* ---------------- mini player ---------------- */
+  const audio = document.getElementById('mp-audio');
+  const miniPlayer = document.getElementById('mini-player');
+  const playBtn = document.getElementById('play-toggle');
+  const mpProgress = document.getElementById('mp-progress');
+  let playerShown = false;
+
+  function showMiniPlayer(){
+    if (!playerShown){ miniPlayer.classList.add('show'); playerShown = true; }
+  }
+  // Reveal the floating player once the visitor reaches the discography section
+  const discografiaEl = document.getElementById('discografia');
+  if (discografiaEl){
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) showMiniPlayer(); });
+    }, { threshold: 0.2 }).observe(discografiaEl);
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused){
+      audio.play().catch(() => {});
+      playBtn.textContent = '❚❚';
+      miniPlayer.classList.add('playing');
+    } else {
+      audio.pause();
+      playBtn.textContent = '▶';
+      miniPlayer.classList.remove('playing');
+    }
+  });
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) mpProgress.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+  audio.addEventListener('ended', () => {
+    playBtn.textContent = '▶';
+    miniPlayer.classList.remove('playing');
+    mpProgress.style.width = '0%';
+  });
+  document.getElementById('mp-close').addEventListener('click', () => {
+    audio.pause();
+    playBtn.textContent = '▶';
+    miniPlayer.classList.remove('show', 'playing');
+  });
+
+  /* ---------------- newsletter (demo, no backend) ---------------- */
+  document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('newsletter-msg').textContent = translations[lang]['newsletter.thanks'];
+    document.getElementById('newsletter-form').reset();
+  });
 </script>
 
 </body>
