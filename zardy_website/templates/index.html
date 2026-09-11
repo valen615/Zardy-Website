@@ -78,7 +78,9 @@
   .marquee{ border-bottom:1px solid var(--line); background:
       repeating-linear-gradient(135deg, var(--accent), var(--accent) 10px, var(--accent-dim) 10px, var(--accent-dim) 20px);
     overflow:hidden; padding: 4px 0; }
-  .marquee-track{ display:flex; white-space:nowrap; color:#0c0b0d; font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:18px; text-transform:uppercase; letter-spacing:.08em; }
+  .marquee-track{ display:inline-flex; white-space:nowrap; color:#0c0b0d; font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:18px; text-transform:uppercase; letter-spacing:.08em; animation:marqueeScroll 22s linear infinite; }
+  .marquee-track span{ padding:0 18px; flex-shrink:0; }
+  @keyframes marqueeScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
   /* ---------- SECTION HEADERS ---------- */
   .section{ padding:70px 0; }
@@ -86,6 +88,9 @@
   .section-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:34px; gap:20px; flex-wrap:wrap; }
   .section-head h2{ font-family:'Big Shoulders Display', sans-serif; font-size:42px; font-weight:800; text-transform:lowercase; }
   .section-head p{ color:var(--muted); font-size:14px; max-width:34ch; text-align:right; }
+
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
   /* ---------- BIO ---------- */
   .bio-body{ display:grid; grid-template-columns:.55fr 1fr; gap:40px; }
@@ -100,19 +105,43 @@
   .tag-chip:hover{ border-color:var(--accent); color:#0c0b0d; background:var(--accent); transform:translateY(-2px); }
 
   .eq, .loader-eq, .player-eq { display:flex; align-items:flex-end; gap:5px; height:70px; }
-  .eq span, .loader-eq span, .player-eq span { width:6px; background:var(--accent); border-radius:2px; height: 10%; }
+  .eq span, .loader-eq span, .player-eq span {
+    width:6px; background:var(--accent); border-radius:2px;
+    animation:bounce 1.1s ease-in-out infinite;
+  }
+  .eq span:nth-child(1), .loader-eq span:nth-child(1), .player-eq span:nth-child(1){ height:30%; animation-delay:-.9s; }
+  .eq span:nth-child(2), .loader-eq span:nth-child(2), .player-eq span:nth-child(2){ height:70%; animation-delay:-.6s; }
+  .eq span:nth-child(3), .loader-eq span:nth-child(3), .player-eq span:nth-child(3){ height:45%; animation-delay:-1.1s; }
+  .eq span:nth-child(4), .loader-eq span:nth-child(4), .player-eq span:nth-child(4){ height:90%; animation-delay:-.3s; }
+  .eq span:nth-child(5), .loader-eq span:nth-child(5), .player-eq span:nth-child(5){ height:55%; animation-delay:-.75s; }
+  .eq span:nth-child(6){ height:35%; animation-delay:-.15s; }
+  .eq span:nth-child(7){ height:65%; animation-delay:-1s; }
+  @keyframes bounce{ 0%,100%{ transform:scaleY(.4); } 50%{ transform:scaleY(1); } }
+  @keyframes spin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001s !important; transition-duration:.001s !important; }
+  }
 
   /* ---------- UPCOMING ---------- */
   .upcoming-card{
     display:grid; grid-template-columns:220px 1fr; gap:36px;
     border:1px solid var(--line); background:var(--bg-raised); padding:28px; position:relative; overflow:hidden;
   }
+  .upcoming-card::before{
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(circle at 0% 0%, var(--accent-dim), transparent 60%); opacity:.45;
+  }
+  @keyframes glowShift{
+    0%,100%{ background-position:0% 0%; opacity:.4; }
+    50%{ background-position:20% 10%; opacity:.7; }
+  }
   .upcoming-art{ position:relative; z-index:1; }
   .upcoming-art img{ width:100%; aspect-ratio:1/1; object-fit:cover; border:1px solid var(--line); display:block; }
   .upcoming-pulse{
     position:absolute; top:10px; right:10px; width:10px; height:10px; border-radius:50%; background:var(--accent);
+    animation:dotPulse 1.6s ease-in-out infinite;
   }
-  
+  @keyframes dotPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.25; } }
   .upcoming-info{ position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; gap:10px; }
   .upcoming-badge{
     display:inline-flex; align-items:center; gap:8px; width:fit-content;
@@ -129,6 +158,17 @@
   .cd-unit{ background:var(--bg); border:1px solid var(--line); padding:10px 14px; min-width:64px; text-align:center; }
   .cd-unit b{ display:block; font-family:'Big Shoulders Display', sans-serif; font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; }
   .cd-unit span{ font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+
+  .out-stamp{
+    display:none; align-items:center; gap:10px; margin-top:6px;
+    font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:28px; text-transform:uppercase;
+    letter-spacing:.03em; color:var(--accent);
+  }
+  .out-stamp::before{ content:"●"; font-size:14px; animation:dotPulse 1.6s ease-in-out infinite; }
+  #proximamente.is-out .countdown{ display:none; }
+  #proximamente.is-out .out-stamp{ display:flex; }
+  #proximamente.is-out .upcoming-badge{ border-color:var(--accent); background:var(--accent); color:#0c0b0d; }
+  #proximamente.is-out .upcoming-card::before{ animation:glowShift 2.4s ease-in-out infinite; }
 
   .presave-btn{
     margin-top:14px; display:inline-flex; align-items:center; gap:10px; width:fit-content;
@@ -242,14 +282,14 @@
   .milestone-toast .toast-close{ background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; padding:6px; margin-left:auto; flex-shrink:0; }
   .milestone-toast .toast-close:hover{ color:var(--text); }
 
-  /* small permanent badge next to the hero stat, once the milestone lands */
-  .stat-milestone-badge{
-    display:inline-flex; align-items:center; gap:4px; margin-left:8px; background:var(--accent); color:#0c0b0d;
-    font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:10px; letter-spacing:.04em;
-    text-transform:uppercase; padding:2px 7px; border-radius:999px; vertical-align:middle;
-    animation:milestoneBadgePulse 2.2s ease-in-out infinite;
+  /* progress toward the 100K monthly-listener goal (currently ~59K, verified on Spotify) */
+  .milestone-progress{
+    width:120px; height:4px; background:var(--line); border-radius:2px; margin-top:6px; overflow:hidden;
   }
-  @keyframes milestoneBadgePulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(193,68,60,.5);} 50%{ box-shadow:0 0 0 5px rgba(193,68,60,0);} }
+  .milestone-progress i{
+    display:block; height:100%; background:var(--accent); border-radius:2px;
+    transition:width 1s ease;
+  }
 
   .confetti-container{ position:fixed; inset:0; pointer-events:none; z-index:199; overflow:hidden; }
   .confetti-piece{ position:absolute; top:-20px; width:7px; height:13px; opacity:.95; animation:confettiFall linear forwards; }
@@ -262,7 +302,7 @@
   .shows-empty{
     border:1px dashed var(--line); padding:44px 28px; text-align:center; display:flex; flex-direction:column; gap:14px; align-items:center;
   }
-  .shows-empty .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); }
+  .shows-empty .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); animation:dotPulse 1.6s ease-in-out infinite; }
   .shows-empty p{ color:var(--muted); font-size:14.5px; max-width:40ch; }
   .shows-empty strong{ font-family:'Big Shoulders Display', sans-serif; font-size:22px; font-weight:800; color:var(--text); text-transform:lowercase; }
 
@@ -291,6 +331,7 @@
   }
   .player-art{ position:relative; width:64px; height:64px; flex-shrink:0; border:1px solid var(--line); border-radius:50%; overflow:hidden; }
   .player-art img{ width:100%; height:100%; object-fit:cover; }
+  .player-art.playing img{ animation:spin 6s linear infinite; }
   .player-art::after{ content:""; position:absolute; inset:0; margin:auto; width:14px; height:14px; background:var(--bg-raised); border:1px solid var(--line); border-radius:50%; }
   .player-body{ flex:1; min-width:0; }
   .player-meta{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
@@ -380,8 +421,14 @@
       <h1 class="name" id="hero-name"><span id="hero-left">zar</span><span id="hero-right">dy</span></h1>
       <p class="hero-line" data-i18n="hero.line">Sonido crudo, melancólico y directo, nacido más en la escena de edits de TikTok que en una discográfica. Sus lanzamientos se mueven entre el indie rock y el altrock con letras que hablan de romper y seguir intentándolo.</p>
       <div class="stat-row">
-        <div class="stat"><b>100K<span class="stat-milestone-badge" data-i18n="milestone.badge">nuevo</span></b><span data-i18n="hero.stat1">oyentes mensuales en Spotify</span></div>
-        <div class="stat"><b>8</b><span data-i18n="hero.stat2">lanzamientos</span></div>
+        <div class="stat">
+          <b id="stat-listeners">59K</b>
+          <span data-i18n="hero.stat1">oyentes mensuales en Spotify</span>
+          <div class="milestone-progress" title="59K / 100K monthly listeners">
+            <i style="width:59%"></i>
+          </div>
+        </div>
+        <div class="stat"><b>9</b><span data-i18n="hero.stat2">lanzamientos</span></div>
         <div class="stat"><b id="stat-days">—</b><span data-i18n="hero.stat3">para "contemplating"</span></div>
       </div>
     </div>
@@ -393,7 +440,7 @@
 </header>
 
 <div class="marquee" aria-hidden="true">
-  <marquee scrollamount="12" class="marquee-track" id="marquee-track"></marquee>
+  <div class="marquee-track" id="marquee-track"></div>
 </div>
 
 <section class="section" id="bio">
@@ -407,7 +454,7 @@
         Zardy es un artista emergente que aún no tiene biografía oficial extensa: su perfil ha crecido sobre todo gracias a ediciones/fan-edits en TikTok dentro de la escena "corecore" / "losercore", más que por prensa musical tradicional.
       </div>
       <div>
-        <p data-i18n="bio.p1">Su sencillo "it be okay" (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, de tono melancólico y directo, generó suficiente tracción para justify una reedición con versiones sped up, slowed e instrumental.</p>
+        <p data-i18n="bio.p1">Su sencillo "it be okay" (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, de tono melancólico y directo, generó suficiente tracción para justificar una reedición con versiones sped up, slowed e instrumental.</p>
         <p data-i18n="bio.p2">Antes de eso, había ido soltando sencillos sueltos —"Cult of katana", "Grow", "don't play", "Rotom"— construyendo poco a poco una base de oyentes sin depender de un álbum de estudio tradicional, algo común en artistas que crecen primero en redes y después en plataformas de streaming.</p>
       </div>
     </div>
@@ -440,10 +487,10 @@
 <div id="lightbox"><img id="lightbox-img" src="" alt=""></div>
 
 <div class="milestone-toast" id="milestone-toast" role="status">
-  <span class="badge-icon">🎉</span>
+  <span class="badge-icon">💿</span>
   <div class="milestone-text">
-    <b data-i18n="milestone.title">¡100K club!</b>
-    <span data-i18n="milestone.sub">zardy acaba de superar los 100K oyentes mensuales en Spotify 🎧</span>
+    <b data-i18n="album.title">¡Nuevo álbum! 💿</b>
+    <span data-i18n="album.sub">"contemplating", el primer álbum de zardy, ya está disponible en Spotify</span>
   </div>
   <button class="toast-close" id="toast-close" aria-label="Cerrar">✕</button>
 </div>
@@ -471,6 +518,7 @@
           <div class="cd-unit"><b id="cd-m">00</b><span data-i18n="upcoming.mins">min</span></div>
           <div class="cd-unit"><b id="cd-s">00</b><span data-i18n="upcoming.secs">seg</span></div>
         </div>
+        <div class="out-stamp" id="out-stamp"><span data-i18n="upcoming.out">¡ya está disponible!</span></div>
 
         <a class="presave-btn" href="https://open.spotify.com/album/0pCTVdNBVzUOoW4JF9xZG3" target="_blank" rel="noopener">
           <span class="plus">+</span><span data-i18n="upcoming.presave">Preguardar en Spotify</span>
@@ -575,10 +623,10 @@
       "nav.bio":"sobre", "nav.sound":"sonido", "nav.upcoming":"próximamente", "nav.discog":"discografía", "nav.listen":"escucha",
       "hero.kicker":"artista independiente — rock alternativo",
       "hero.line":"Sonido crudo, melancólico y directo, nacido más en la escena de edits de TikTok que en una discográfica. Sus lanzamientos se mueven entre el indie rock y el altrock con letras que hablan de romper y seguir intentándolo.",
-      "hero.stat1":"oyentes mensuales en Spotify", "hero.stat2":"lanzamientos", "hero.stat3":"para \"contemplating\"",
+      "hero.stat1":"oyentes mensuales en Spotify", "hero.stat2":"lanzamientos", "hero.stat3":"para \"contemplating\"", "hero.stat3Out":"nuevo álbum: \"contemplating\"",
       "bio.h2":"sobre él", "bio.sub":"lo que se sabe hasta ahora, con datos verificados en Spotify y Apple Music",
       "bio.note":"Zardy es un artista emergente que aún no tiene biografía oficial extensa: su perfil ha crecido sobre todo gracias a ediciones/fan-edits en TikTok dentro de la escena \"corecore\" / \"losercore\", más que por prensa musical tradicional.",
-      "bio.p1":"Su sencillo \"it be okay\" (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, de tono melancólico y directo, generó suficiente tracción para justify una reedición con versiones sped up, slowed e instrumental.",
+      "bio.p1":"Su sencillo \"it be okay\" (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, de tono melancólico y directo, generó suficiente tracción para justificar una reedición con versiones sped up, slowed e instrumental.",
       "bio.p2":"Antes de eso, había ido soltando sencillos sueltos —\"Cult of katana\", \"Grow\", \"don't play\", \"Rotom\"— construyendo poco a poco una base de oyentes sin depender de un álbum de estudio tradicional, algo común en artistas que crecen primero en redes y después en plataformas de streaming.",
       "sound.h2":"el sonido", "sound.sub":"a qué suena zardy, en pocas palabras",
       "nav.gallery":"galería", "nav.shows":"shows",
@@ -599,22 +647,25 @@
       "upcoming.toggle":"Vista previa de la lista de canciones",
       "upcoming.tba":"por revelar",
       "upcoming.out":"¡ya está disponible!",
+      "upcoming.outBadge":"● Álbum · ¡Ya disponible!",
+      "upcoming.outMeta":"zardy · disponible desde el 10 de septiembre de 2026 · 11 canciones",
+      "upcoming.listenNow":"Escuchar en Spotify",
+      "album.title":"¡Nuevo álbum! 💿", "album.sub":"\"contemplating\", el primer álbum de zardy, ya está disponible en Spotify",
       "discog.h2":"discografía", "discog.sub":"haz clic en un lanzamiento para ver sus canciones",
       "listen.h2":"escúchalo en", "listen.sub":"enlaces verificados a sus perfiles",
       "player.sub":"zardy · preview de Spotify de 30 segundos",
       "listen.spotifySub":"100K oyentes mensuales", "listen.tiktokSub":"@zardyeoeo",
-      "milestone.title":"¡100K club! 🎉", "milestone.sub":"zardy acaba de superar los 100K oyentes mensuales en Spotify 🎧", "milestone.badge":"nuevo",
       "footer.disclaimer":"fan page no oficial — datos de Spotify & Apple Music",
       "footer.cta":"escuchar en Spotify →",
       tags: ["indie rock", "alt rock", "corecore", "losercore", "melancólico", "TikTok-core"],
-      single:"canción", plural:"canciones", releaseKind:"Sencillo",
+      single:"canción", plural:"canciones", releaseKind:"Sencillo", releaseKindAlbum:"Álbum",
       marquee: "ZARDY · CONTEMPLATING · IT BE OKAY · LOSERCORE · SALE EL 10 DE SEP · "
     },
     en: {
       "nav.bio":"about", "nav.sound":"sound", "nav.upcoming":"upcoming", "nav.discog":"discography", "nav.listen":"listen",
       "hero.kicker":"independent artist — alternative rock",
       "hero.line":"Raw, melancholic and direct sound, born more out of TikTok's edit scene than a record label. His releases sit between indie rock and alt rock, with lyrics about breaking down and trying again.",
-      "hero.stat1":"monthly listeners on Spotify", "hero.stat2":"releases", "hero.stat3":"until \"contemplating\"",
+      "hero.stat1":"monthly listeners on Spotify", "hero.stat2":"releases", "hero.stat3":"until \"contemplating\"", "hero.stat3Out":"new album: \"contemplating\"",
       "bio.h2":"about him", "bio.sub":"what's known so far, based on data verified on Spotify and Apple Music",
       "bio.note":"Zardy is an emerging artist without an extensive official bio yet: his following has grown mostly through TikTok fan edits within the \"corecore\" / \"losercore\" scene, rather than traditional music press.",
       "bio.p1":"His single \"it be okay\" (2026) became many listeners' entry point, driven by fan edits on TikTok tagging it as indie rock / losercore. The moody, direct track gained enough traction to justify a re-release with sped up, slowed, and instrumental versions.",
@@ -638,20 +689,28 @@
       "upcoming.toggle":"Tracklist preview",
       "upcoming.tba":"TBA",
       "upcoming.out":"out now!",
+      "upcoming.outBadge":"● Album · Out now!",
+      "upcoming.outMeta":"zardy · out since September 10, 2026 · 11 songs",
+      "upcoming.listenNow":"Listen on Spotify",
+      "album.title":"New album! 💿", "album.sub":"\"contemplating\", zardy's debut album, is out now on Spotify",
       "discog.h2":"discography", "discog.sub":"click a release to see its tracklist",
       "listen.h2":"listen on", "listen.sub":"verified links to his profiles",
       "player.sub":"zardy · 30-second Spotify preview",
       "listen.spotifySub":"100K monthly listeners", "listen.tiktokSub":"@zardyeoeo",
-      "milestone.title":"100K club! 🎉", "milestone.sub":"zardy just crossed 100K monthly listeners on Spotify 🎧", "milestone.badge":"new",
       "footer.disclaimer":"unofficial fan page — data from Spotify & Apple Music",
       "footer.cta":"listen on Spotify →",
       tags: ["indie rock", "alt rock", "corecore", "losercore", "melancholic", "TikTok-core"],
-      single:"song", plural:"songs", releaseKind:"Single",
+      single:"song", plural:"songs", releaseKind:"Single", releaseKindAlbum:"Album",
       marquee: "ZARDY · CONTEMPLATING · IT BE OKAY · LOSERCORE · OUT SEP 10 · "
     }
   };
 
   let lang = 'en';
+
+  const CONTEMPLATING_RELEASE = {
+    title: "contemplating", year: 2026, kindAlbum: true,
+    tracks: Array.from({ length: 11 }, (_, i) => ({ name: `Track ${i + 1} — TBA`, time: "—:—" }))
+  };
 
   const releases = [
     { title: "number1", year: 2026, tracks: [{ name: "number1", time: "3:01" }] },
@@ -734,17 +793,19 @@
     const openIndex = [...container.querySelectorAll('.release')].findIndex(r => r.classList.contains('open'));
     container.innerHTML = '';
     const t = translations[lang];
+    const list = albumIsOut ? [CONTEMPLATING_RELEASE, ...releases] : releases;
 
-    releases.forEach((rel, i) => {
+    list.forEach((rel, i) => {
       const wrap = document.createElement('div');
       wrap.className = 'release';
       const num = String(i + 1).padStart(2, '0');
       const trackWord = rel.tracks.length === 1 ? t.single : t.plural;
+      const kindLabel = rel.kindAlbum ? t.releaseKindAlbum : t.releaseKind;
 
       wrap.innerHTML = `
         <button class="release-head" aria-expanded="false">
           <span class="release-num">${num}</span>
-          <span class="release-title">${rel.title}<span class="kind">${t.releaseKind}</span></span>
+          <span class="release-title">${rel.title}<span class="kind">${kindLabel}</span></span>
           <span class="release-count">${rel.tracks.length} ${trackWord}</span>
           <span class="release-year">${rel.year}</span>
           <span class="chevron"></span>
@@ -800,6 +861,8 @@
   document.getElementById('btn-en').addEventListener('click', () => { lang = 'en'; applyLang(); });
 
   /* ---------------- countdown ---------------- */
+  let albumIsOut = false;
+
   function tickCountdown(){
     const now = new Date();
     let diff = RELEASE_DATE - now;
@@ -809,7 +872,12 @@
 
     if (diff <= 0){
       d.textContent = '00'; h.textContent = '00'; m.textContent = '00'; s.textContent = '00';
-      statDays.textContent = translations[lang].out.includes('!') ? '🎧' : '0';
+      statDays.textContent = '🎧';
+      if (!albumIsOut){
+        albumIsOut = true;
+        clearInterval(countdownTimer);
+        showAlbumOut();
+      }
       return;
     }
     const days = Math.floor(diff / 86400000);
@@ -822,7 +890,31 @@
     s.textContent = String(secs).padStart(2,'0');
     statDays.textContent = days + 'd';
   }
-  setInterval(tickCountdown, 1000);
+  const countdownTimer = setInterval(tickCountdown, 1000);
+
+  /* ---------------- switch the "upcoming" card to a release-day celebration ---------------- */
+  function showAlbumOut(){
+    const section = document.getElementById('proximamente');
+    if (section) section.classList.add('is-out');
+
+    const badge = document.querySelector('#proximamente .upcoming-badge');
+    if (badge) badge.setAttribute('data-i18n', 'upcoming.outBadge');
+
+    const meta = document.getElementById('upcoming-meta');
+    if (meta) meta.setAttribute('data-i18n', 'upcoming.outMeta');
+
+    const presaveLabel = document.querySelector('.presave-btn span:last-child');
+    if (presaveLabel) presaveLabel.setAttribute('data-i18n', 'upcoming.listenNow');
+    const presavePlus = document.querySelector('.presave-btn .plus');
+    if (presavePlus) presavePlus.textContent = '▶';
+
+    const stat3 = document.querySelector('[data-i18n="hero.stat3"]');
+    if (stat3) stat3.setAttribute('data-i18n', 'hero.stat3Out');
+
+    applyLang();
+    launchConfetti();
+    showToast('album.title', 'album.sub', '💿');
+  }
 
   /* ---------------- upcoming tracklist toggle ---------------- */
   const upcomingToggleBtn = document.getElementById('upcoming-toggle-btn');
@@ -834,12 +926,8 @@
 
   applyLang();
 
-  /* ---------------- 100K monthly listeners celebration ---------------- */
-  function celebrateMilestone(){
-    const toast = document.getElementById('milestone-toast');
-    if (!toast || toast.dataset.shown) return;
-    toast.dataset.shown = '1';
-
+  /* ---------------- celebration toast + confetti (reusable) ---------------- */
+  function launchConfetti(){
     const confettiWrap = document.createElement('div');
     confettiWrap.className = 'confetti-container';
     document.body.appendChild(confettiWrap);
@@ -855,47 +943,31 @@
       confettiWrap.appendChild(piece);
     }
     setTimeout(() => confettiWrap.remove(), 4200);
+  }
 
+  function showToast(titleKey, subKey, icon){
+    const toast = document.getElementById('milestone-toast');
+    if (!toast) return;
+    toast.querySelector('.badge-icon').textContent = icon;
+    toast.querySelector('.milestone-text b').setAttribute('data-i18n', titleKey);
+    toast.querySelector('.milestone-text b').textContent = translations[lang][titleKey] || '';
+    toast.querySelector('.milestone-text span').setAttribute('data-i18n', subKey);
+    toast.querySelector('.milestone-text span').textContent = translations[lang][subKey] || '';
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 8000);
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 8000);
   }
   document.getElementById('toast-close').addEventListener('click', () => {
     document.getElementById('milestone-toast').classList.remove('show');
   });
-  setTimeout(celebrateMilestone, 3200);
 
-  /* ---------------- JS ANIMATIONS REPLACING CSS ---------------- */
-  // Equalizer (Bouncing bars without CSS Keyframes)
-  setInterval(() => {
-    document.querySelectorAll('.eq span, .loader-eq span, .player-eq span').forEach(span => {
-      span.style.height = (Math.floor(Math.random() * 70) + 30) + '%';
+  /* ---------------- scroll reveal ---------------- */
+  const revealIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){ entry.target.classList.add('is-visible'); revealIo.unobserve(entry.target); }
     });
-  }, 150);
-
-  // Rotating vinyls (Without CSS spin)
-  let rot = 0;
-  setInterval(() => {
-    rot = (rot + 2) % 360;
-    const playingArt = document.getElementById('player-img');
-    if(document.getElementById('player-card').classList.contains('playing')){
-      playingArt.style.transform = `rotate(${rot}deg)`;
-    } else {
-      playingArt.style.transform = `rotate(0deg)`;
-    }
-  }, 20);
-
-  // Pulse effect (Without CSS Keyframes)
-  let pulseOpacity = 1;
-  let pulseShrink = true;
-  setInterval(() => {
-    const pulse1 = document.getElementById('pulse-dot');
-    const pulse2 = document.getElementById('shows-pulse');
-    if (pulseShrink) { pulseOpacity -= 0.05; } else { pulseOpacity += 0.05; }
-    if (pulseOpacity <= 0.2) pulseShrink = false;
-    if (pulseOpacity >= 1) pulseShrink = true;
-    if(pulse1) pulse1.style.opacity = pulseOpacity;
-    if(pulse2) pulse2.style.opacity = pulseOpacity;
-  }, 50);
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealIo.observe(el));
 
   /* ---------------- scrollspy ---------------- */
   const navLinks = [...document.querySelectorAll('[data-nav]')];
@@ -923,67 +995,92 @@
   /* ---------------- intro: draw the line, then split + converge into the hero name ---------------- */
   function runIntro(){
     const loader = document.getElementById('loader');
-    const path = document.getElementById('sig-path');
-    const svg = document.getElementById('sig-svg');
-    const loaderLeft = document.getElementById('loader-left');
-    const loaderRight = document.getElementById('loader-right');
-    const heroLeft = document.getElementById('hero-left');
-    const heroRight = document.getElementById('hero-right');
+    if (!loader) return;
 
-    if (!loader || !path) return;
-
-    // prep the signature path to draw itself on, bow included, over 1s
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = len;
-    path.style.strokeDashoffset = len;
-    path.style.transition = 'stroke-dashoffset 1s cubic-bezier(.65,0,.35,1)';
+    // Hard safety net: no matter what happens in the fancy animation below,
+    // the loader can never stay on screen (or keep blocking clicks) longer than this.
+    const safety = setTimeout(() => {
+      loader.style.display = 'none';
+      loader.style.pointerEvents = 'none';
+    }, 3000);
 
     function finish(){
+      clearTimeout(safety);
       loader.style.display = 'none';
+      loader.style.pointerEvents = 'none';
     }
 
-    function converge(){
-      if (!heroLeft || !heroRight){ finish(); return; }
+    try {
+      const path = document.getElementById('sig-path');
+      const svg = document.getElementById('sig-svg');
+      const loaderLeft = document.getElementById('loader-left');
+      const loaderRight = document.getElementById('loader-right');
+      const heroLeft = document.getElementById('hero-left');
+      const heroRight = document.getElementById('hero-right');
 
-      const lFrom = loaderLeft.getBoundingClientRect();
-      const rFrom = loaderRight.getBoundingClientRect();
-      const lTo = heroLeft.getBoundingClientRect();
-      const rTo = heroRight.getBoundingClientRect();
+      if (!path || typeof path.getTotalLength !== 'function') { finish(); return; }
 
-      const lScale = lTo.height / lFrom.height;
-      const rScale = rTo.height / rFrom.height;
-      const lTx = (lTo.left + lTo.width / 2) - (lFrom.left + lFrom.width / 2);
-      const lTy = (lTo.top + lTo.height / 2) - (lFrom.top + lFrom.height / 2);
-      const rTx = (rTo.left + rTo.width / 2) - (rFrom.left + rFrom.width / 2);
-      const rTy = (rTo.top + rTo.height / 2) - (rFrom.top + rFrom.height / 2);
+      // prep the signature path to draw itself on, bow included, over 1s
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'stroke-dashoffset 1s cubic-bezier(.65,0,.35,1)';
 
-      // stage A: a quick little snap apart — the "split"
-      loaderLeft.style.transition = 'transform .16s ease-out';
-      loaderRight.style.transition = 'transform .16s ease-out';
-      loaderLeft.style.transform = 'translate(-14px, 0) scale(1)';
-      loaderRight.style.transform = 'translate(14px, 0) scale(1)';
-      svg.classList.add('fade');
+      function converge(){
+        try {
+          if (!heroLeft || !heroRight || !loaderLeft || !loaderRight){ finish(); return; }
 
-      setTimeout(() => {
-        // stage B: both halves travel and land exactly on the real hero name — coming together
-        loaderLeft.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
-        loaderRight.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
-        loaderLeft.style.transform = `translate(${lTx}px, ${lTy}px) scale(${lScale})`;
-        loaderRight.style.transform = `translate(${rTx}px, ${rTy}px) scale(${rScale})`;
-        loader.classList.add('hide-bg');
+          const lFrom = loaderLeft.getBoundingClientRect();
+          const rFrom = loaderRight.getBoundingClientRect();
+          const lTo = heroLeft.getBoundingClientRect();
+          const rTo = heroRight.getBoundingClientRect();
 
-        setTimeout(finish, 720);
-      }, 160);
-    }
+          if (!lFrom.height || !rFrom.height || !lTo.height || !rTo.height){ finish(); return; }
 
-    requestAnimationFrame(() => {
+          const lScale = lTo.height / lFrom.height;
+          const rScale = rTo.height / rFrom.height;
+          const lTx = (lTo.left + lTo.width / 2) - (lFrom.left + lFrom.width / 2);
+          const lTy = (lTo.top + lTo.height / 2) - (lFrom.top + lFrom.height / 2);
+          const rTx = (rTo.left + rTo.width / 2) - (rFrom.left + rFrom.width / 2);
+          const rTy = (rTo.top + rTo.height / 2) - (rFrom.top + rFrom.height / 2);
+
+          // stage A: a quick little snap apart — the "split"
+          loaderLeft.style.transition = 'transform .16s ease-out';
+          loaderRight.style.transition = 'transform .16s ease-out';
+          loaderLeft.style.transform = 'translate(-14px, 0) scale(1)';
+          loaderRight.style.transform = 'translate(14px, 0) scale(1)';
+          if (svg) svg.classList.add('fade');
+
+          setTimeout(() => {
+            try {
+              // stage B: both halves travel and land exactly on the real hero name — coming together
+              loaderLeft.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
+              loaderRight.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
+              loaderLeft.style.transform = `translate(${lTx}px, ${lTy}px) scale(${lScale})`;
+              loaderRight.style.transform = `translate(${rTx}px, ${rTy}px) scale(${rScale})`;
+              loader.classList.add('hide-bg');
+              setTimeout(finish, 720);
+            } catch (e){ finish(); }
+          }, 160);
+        } catch (e){ finish(); }
+      }
+
       requestAnimationFrame(() => {
-        path.style.strokeDashoffset = '0';
-        setTimeout(converge, 1150);
+        requestAnimationFrame(() => {
+          try {
+            path.style.strokeDashoffset = '0';
+            setTimeout(converge, 1150);
+          } catch (e){ finish(); }
+        });
       });
-    });
+    } catch (e){
+      finish();
+    }
   }
   window.addEventListener('load', runIntro);
+  // Belt-and-braces: if the load event already fired before this script ran
+  // (e.g. slow script injection), don't wait forever for an event that already happened.
+  if (document.readyState === 'complete') runIntro();
 
   /* ---------------- lightbox close ---------------- */
   const lightbox = document.getElementById('lightbox');
@@ -998,6 +1095,7 @@
   const mpProgress = document.getElementById('mp-progress');
   const playerBar = document.getElementById('player-bar');
   const playerTime = document.getElementById('player-time');
+  const playerArt = document.getElementById('player-art');
 
   function fmt(t){
     if (!isFinite(t)) return '0:00';
@@ -1010,10 +1108,12 @@
       audio.play().catch(() => {});
       playBtn.textContent = '❚❚';
       playerCard.classList.add('playing');
+      playerArt.classList.add('playing');
     } else {
       audio.pause();
       playBtn.textContent = '▶';
       playerCard.classList.remove('playing');
+      playerArt.classList.remove('playing');
     }
   });
   audio.addEventListener('timeupdate', () => {
@@ -1027,6 +1127,7 @@
   audio.addEventListener('ended', () => {
     playBtn.textContent = '▶';
     playerCard.classList.remove('playing');
+    playerArt.classList.remove('playing');
     mpProgress.style.width = '0%';
   });
   playerBar.addEventListener('click', (e) => {
