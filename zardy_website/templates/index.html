@@ -66,6 +66,8 @@
   .kicker{ color:var(--accent); font-size:14px; margin-bottom:14px; font-weight:500; }
 
   h1.name{ font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:clamp(64px, 11vw, 148px); line-height:.82; letter-spacing:-.01em; text-transform:lowercase; display:flex; }
+  #hero-left, #hero-right{ opacity:0; }
+  #hero-name.revealed #hero-left, #hero-name.revealed #hero-right{ opacity:1; }
   h1.name span{ display:inline-block; }
   h1.name span:hover{ color:var(--accent); transform:translateY(-6px) rotate(-3deg); }
 
@@ -232,19 +234,17 @@
   /* ---------- LOADER ---------- */
   #loader{
     position:fixed; inset:0; z-index:100; background:var(--bg); display:flex; align-items:center; justify-content:center;
-    flex-direction:column; transition: background-color .5s ease;
+    flex-direction:column;
   }
-  #loader.hide-bg{ background-color: rgba(12,11,13,0); }
 
-  .loader-name-wrap{ position:relative; display:flex; z-index:10; }
+  .loader-name-wrap{ position:relative; display:flex; z-index:10; will-change:opacity, transform; }
   #loader .mark-half{
-    font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:64px; line-height:1;
-    text-transform:lowercase; display:inline-block; transform-origin:center center; will-change:transform;
+    font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:clamp(64px, 11vw, 148px); line-height:.82;
+    letter-spacing:-.01em; text-transform:lowercase; display:inline-block; transform-origin:center center; will-change:transform;
   }
 
-  #loader .signature{ margin-top:16px; overflow:visible; transition:opacity .3s ease; }
+  #loader .signature{ margin-top:16px; overflow:visible; will-change:filter, opacity; }
   #loader .signature path{ fill:none; stroke:var(--accent); stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round; }
-  #loader .signature.fade{ opacity:0; }
 
   /* ---------- GALLERY ---------- */
   .gallery-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
@@ -282,14 +282,14 @@
   .milestone-toast .toast-close{ background:none; border:none; color:var(--muted); font-size:15px; cursor:pointer; padding:6px; margin-left:auto; flex-shrink:0; }
   .milestone-toast .toast-close:hover{ color:var(--text); }
 
-  /* progress toward the 100K monthly-listener goal (currently ~59K, verified on Spotify) */
-  .milestone-progress{
-    width:120px; height:4px; background:var(--line); border-radius:2px; margin-top:6px; overflow:hidden;
+  /* stat-milestone-badge: small pulsing tag for a just-hit number, e.g. the 100K listeners mark */
+  .stat-milestone-badge{
+    display:inline-flex; align-items:center; margin-left:8px; background:var(--accent); color:#0c0b0d;
+    font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:10px; letter-spacing:.04em;
+    text-transform:uppercase; padding:2px 7px; border-radius:999px; vertical-align:middle;
+    animation:milestoneBadgePulse 2.2s ease-in-out infinite;
   }
-  .milestone-progress i{
-    display:block; height:100%; background:var(--accent); border-radius:2px;
-    transition:width 1s ease;
-  }
+  @keyframes milestoneBadgePulse{ 0%,100%{ box-shadow:0 0 0 0 rgba(193,68,60,.5);} 50%{ box-shadow:0 0 0 5px rgba(193,68,60,0);} }
 
   .confetti-container{ position:fixed; inset:0; pointer-events:none; z-index:199; overflow:hidden; }
   .confetti-piece{ position:absolute; top:-20px; width:7px; height:13px; opacity:.95; animation:confettiFall linear forwards; }
@@ -386,7 +386,7 @@
   <div class="loader-name-wrap">
     <span class="mark-half" id="loader-left">zar</span><span class="mark-half" id="loader-right">dy</span>
   </div>
-  <svg class="signature" id="sig-svg" viewBox="0 0 240 60" width="200" height="50" aria-hidden="true">
+  <svg class="signature" id="sig-svg" viewBox="0 0 240 60" width="260" height="65" aria-hidden="true">
     <path id="sig-path" d="M8,34 C40,18 70,46 100,30 C120,19 132,20 142,28 C150,34 148,44 140,44 C132,44 128,36 136,32 C144,28 154,30 158,38 C160,42 156,46 152,44"/>
   </svg>
 </div>
@@ -422,11 +422,8 @@
       <p class="hero-line" data-i18n="hero.line">Sonido crudo, melancólico y directo, nacido más en la escena de edits de TikTok que en una discográfica. Sus lanzamientos se mueven entre el indie rock y el altrock con letras que hablan de romper y seguir intentándolo.</p>
       <div class="stat-row">
         <div class="stat">
-          <b id="stat-listeners">59K</b>
+          <b id="stat-listeners">100K<span class="stat-milestone-badge" data-i18n="listeners.badge">nuevo</span></b>
           <span data-i18n="hero.stat1">oyentes mensuales en Spotify</span>
-          <div class="milestone-progress" title="59K / 100K monthly listeners">
-            <i style="width:59%"></i>
-          </div>
         </div>
         <div class="stat"><b>9</b><span data-i18n="hero.stat2">lanzamientos</span></div>
         <div class="stat"><b id="stat-days">—</b><span data-i18n="hero.stat3">para "contemplating"</span></div>
@@ -493,6 +490,15 @@
     <span data-i18n="album.sub">"contemplating", el primer álbum de zardy, ya está disponible en Spotify</span>
   </div>
   <button class="toast-close" id="toast-close" aria-label="Cerrar">✕</button>
+</div>
+
+<div class="milestone-toast" id="listeners-toast" role="status">
+  <span class="badge-icon">🎉</span>
+  <div class="milestone-text">
+    <b data-i18n="listeners.title">¡100K club!</b>
+    <span data-i18n="listeners.sub">zardy acaba de superar los 100K oyentes mensuales en Spotify</span>
+  </div>
+  <button class="toast-close" id="listeners-toast-close" aria-label="Cerrar">✕</button>
 </div>
 
 <section class="section" id="proximamente">
@@ -651,6 +657,7 @@
       "upcoming.outMeta":"zardy · disponible desde el 10 de septiembre de 2026 · 11 canciones",
       "upcoming.listenNow":"Escuchar en Spotify",
       "album.title":"¡Nuevo álbum! 💿", "album.sub":"\"contemplating\", el primer álbum de zardy, ya está disponible en Spotify",
+      "listeners.badge":"nuevo", "listeners.title":"¡100K club! 🎉", "listeners.sub":"zardy acaba de superar los 100K oyentes mensuales en Spotify",
       "discog.h2":"discografía", "discog.sub":"haz clic en un lanzamiento para ver sus canciones",
       "listen.h2":"escúchalo en", "listen.sub":"enlaces verificados a sus perfiles",
       "player.sub":"zardy · preview de Spotify de 30 segundos",
@@ -693,6 +700,7 @@
       "upcoming.outMeta":"zardy · out since September 10, 2026 · 11 songs",
       "upcoming.listenNow":"Listen on Spotify",
       "album.title":"New album! 💿", "album.sub":"\"contemplating\", zardy's debut album, is out now on Spotify",
+      "listeners.badge":"new", "listeners.title":"100K club! 🎉", "listeners.sub":"zardy just crossed 100K monthly listeners on Spotify",
       "discog.h2":"discography", "discog.sub":"click a release to see its tracklist",
       "listen.h2":"listen on", "listen.sub":"verified links to his profiles",
       "player.sub":"zardy · 30-second Spotify preview",
@@ -913,7 +921,7 @@
 
     applyLang();
     launchConfetti();
-    showToast('album.title', 'album.sub', '💿');
+    showToast('milestone-toast', 'album.title', 'album.sub', '💿');
   }
 
   /* ---------------- upcoming tracklist toggle ---------------- */
@@ -945,8 +953,8 @@
     setTimeout(() => confettiWrap.remove(), 4200);
   }
 
-  function showToast(titleKey, subKey, icon){
-    const toast = document.getElementById('milestone-toast');
+  function showToast(toastId, titleKey, subKey, icon){
+    const toast = document.getElementById(toastId);
     if (!toast) return;
     toast.querySelector('.badge-icon').textContent = icon;
     toast.querySelector('.milestone-text b').setAttribute('data-i18n', titleKey);
@@ -960,6 +968,17 @@
   document.getElementById('toast-close').addEventListener('click', () => {
     document.getElementById('milestone-toast').classList.remove('show');
   });
+  document.getElementById('listeners-toast-close').addEventListener('click', () => {
+    document.getElementById('listeners-toast').classList.remove('show');
+  });
+
+  /* ---------------- 100K monthly listeners celebration ---------------- */
+  // staggered so it never overlaps the album-release toast, which can fire almost
+  // immediately on load if the release date has already passed
+  setTimeout(() => {
+    launchConfetti();
+    showToast('listeners-toast', 'listeners.title', 'listeners.sub', '🎉');
+  }, 9000);
 
   /* ---------------- scroll reveal ---------------- */
   const revealIo = new IntersectionObserver((entries) => {
@@ -992,51 +1011,56 @@
   document.addEventListener('scroll', updateProgress);
   updateProgress();
 
-  /* ---------------- intro: draw the line, then split + converge into the hero name ---------------- */
+  /* ---------------- intro: name fades in, the line signs itself off with a bow, ---------------- */
+  /* ---------------- then splits and travels home into the real hero name         ---------------- */
   function runIntro(){
     const loader = document.getElementById('loader');
     if (!loader) return;
 
     // Hard safety net: no matter what happens in the fancy animation below,
     // the loader can never stay on screen (or keep blocking clicks) longer than this.
-    const safety = setTimeout(() => {
-      loader.style.display = 'none';
-      loader.style.pointerEvents = 'none';
-    }, 3000);
+    const safety = setTimeout(finish, 4000);
 
     function finish(){
       clearTimeout(safety);
       loader.style.display = 'none';
       loader.style.pointerEvents = 'none';
+      // the real "zardy" is opacity:0 until this exact moment — it's created
+      // right as the two flying halves land, never visible a moment before
+      const heroName = document.getElementById('hero-name');
+      if (heroName) heroName.classList.add('revealed');
     }
 
     try {
       const path = document.getElementById('sig-path');
       const svg = document.getElementById('sig-svg');
+      const nameWrap = document.querySelector('.loader-name-wrap');
       const loaderLeft = document.getElementById('loader-left');
       const loaderRight = document.getElementById('loader-right');
       const heroLeft = document.getElementById('hero-left');
       const heroRight = document.getElementById('hero-right');
 
-      if (!path || typeof path.getTotalLength !== 'function') { finish(); return; }
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canAnimate = window.Animation && path && typeof path.getTotalLength === 'function' && nameWrap && !reduceMotion;
+      if (!canAnimate || !heroLeft || !heroRight || !loaderLeft || !loaderRight){ finish(); return; }
 
-      // prep the signature path to draw itself on, bow included, over 1s
+      const EASE_SOFT = 'cubic-bezier(.22,1,.36,1)';
+      const EASE_SNAP = 'cubic-bezier(.16,.84,.44,1)';
       const len = path.getTotalLength();
       path.style.strokeDasharray = len;
       path.style.strokeDashoffset = len;
-      path.style.transition = 'stroke-dashoffset 1s cubic-bezier(.65,0,.35,1)';
+      nameWrap.style.opacity = '0';
 
       function converge(){
         try {
-          if (!heroLeft || !heroRight || !loaderLeft || !loaderRight){ finish(); return; }
-
           const lFrom = loaderLeft.getBoundingClientRect();
           const rFrom = loaderRight.getBoundingClientRect();
           const lTo = heroLeft.getBoundingClientRect();
           const rTo = heroRight.getBoundingClientRect();
-
           if (!lFrom.height || !rFrom.height || !lTo.height || !rTo.height){ finish(); return; }
 
+          // same font-size on both sides now, so this ratio stays close to 1 —
+          // the halves mostly just travel, they don't have to visibly "grow" anymore
           const lScale = lTo.height / lFrom.height;
           const rScale = rTo.height / rFrom.height;
           const lTx = (lTo.left + lTo.width / 2) - (lFrom.left + lFrom.width / 2);
@@ -1044,35 +1068,45 @@
           const rTx = (rTo.left + rTo.width / 2) - (rFrom.left + rFrom.width / 2);
           const rTy = (rTo.top + rTo.height / 2) - (rFrom.top + rFrom.height / 2);
 
-          // stage A: a quick little snap apart — the "split"
-          loaderLeft.style.transition = 'transform .16s ease-out';
-          loaderRight.style.transition = 'transform .16s ease-out';
-          loaderLeft.style.transform = 'translate(-14px, 0) scale(1)';
-          loaderRight.style.transform = 'translate(14px, 0) scale(1)';
-          if (svg) svg.classList.add('fade');
+          if (svg) svg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, easing: 'ease-in', fill: 'forwards' });
+          loader.animate(
+            [{ backgroundColor: 'rgba(12,11,13,1)' }, { backgroundColor: 'rgba(12,11,13,0)' }],
+            { duration: 700, delay: 140, easing: 'ease-out', fill: 'forwards' }
+          );
 
-          setTimeout(() => {
-            try {
-              // stage B: both halves travel and land exactly on the real hero name — coming together
-              loaderLeft.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
-              loaderRight.style.transition = 'transform .7s cubic-bezier(.65,0,.35,1)';
-              loaderLeft.style.transform = `translate(${lTx}px, ${lTy}px) scale(${lScale})`;
-              loaderRight.style.transform = `translate(${rTx}px, ${rTy}px) scale(${rScale})`;
-              loader.classList.add('hide-bg');
-              setTimeout(finish, 720);
-            } catch (e){ finish(); }
-          }, 160);
+          // one continuous curve per half: a quick snap apart (the "split"), then straight
+          // to the real hero name's exact position — no overshoot, no correction on landing
+          const leftAnim = loaderLeft.animate([
+            { transform: 'translate(0px,0px) scale(1) rotate(0deg)', offset: 0 },
+            { transform: 'translate(-26px,-4px) scale(1) rotate(-6deg)', offset: 0.22 },
+            { transform: `translate(${lTx}px, ${lTy}px) scale(${lScale}) rotate(0deg)`, offset: 1 }
+          ], { duration: 860, easing: EASE_SNAP, fill: 'forwards' });
+
+          const rightAnim = loaderRight.animate([
+            { transform: 'translate(0px,0px) scale(1) rotate(0deg)', offset: 0 },
+            { transform: 'translate(26px,-4px) scale(1) rotate(6deg)', offset: 0.22 },
+            { transform: `translate(${rTx}px, ${rTy}px) scale(${rScale}) rotate(0deg)`, offset: 1 }
+          ], { duration: 860, easing: EASE_SNAP, fill: 'forwards' });
+
+          Promise.all([leftAnim.finished, rightAnim.finished]).then(finish).catch(finish);
         } catch (e){ finish(); }
       }
 
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          try {
-            path.style.strokeDashoffset = '0';
-            setTimeout(converge, 1150);
-          } catch (e){ finish(); }
-        });
-      });
+      const nameIn = nameWrap.animate(
+        [{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'translateY(0px)' }],
+        { duration: 420, easing: EASE_SOFT, fill: 'forwards' }
+      );
+      nameIn.finished.then(() => {
+        const draw = path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: 1000, easing: EASE_SNAP, fill: 'forwards' });
+        return draw.finished;
+      }).then(() => {
+        if (svg) svg.animate(
+          [{ filter: 'drop-shadow(0 0 0px var(--accent))' }, { filter: 'drop-shadow(0 0 7px var(--accent))' }, { filter: 'drop-shadow(0 0 0px var(--accent))' }],
+          { duration: 420, easing: 'ease-out' }
+        );
+        return new Promise(res => setTimeout(res, 240));
+      }).then(converge).catch(finish);
+
     } catch (e){
       finish();
     }
