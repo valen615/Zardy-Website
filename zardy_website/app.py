@@ -7,7 +7,7 @@ ARTIST_DATA = {
     "genre": "Indie Rock / Alt Rock / Corecore",
     "spotify_id": "5OylQa5tfrpPvkZLoeHPDh",
     "stats": {
-        "monthly_listeners": "65K+",
+        "monthly_listeners": "100K+",
         "releases": 8,
         "active_years": "2021–2026"
     },
