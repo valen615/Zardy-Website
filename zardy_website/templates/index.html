@@ -625,6 +625,12 @@
   // kind: 'album' | 'single' | 'versions'.  cover: URL de portada (opcional, si no hay se genera una).
   // embed: 'album/ID' o 'track/ID' de Spotify (opcional).  sp (en cada canción): ID de Spotify (opcional).
   const releases = [
+    { id: 'contemplating', title: 'contemplating', year: 2026, kind: 'album', tracks: [] },
+    { id: 'deardiary', title: 'dear diary,', year: 2026, kind: 'ep', tracks: [] },
+    { id: 'hikikomori', title: 'hikikomori', year: 2026, kind: 'single', tracks: [{ n: 'hikikomori' }] },
+    { id: 'chronic', title: 'chronic', year: 2026, kind: 'single', tracks: [{ n: 'chronic' }] },
+    { id: 'kidiused', title: 'kid i used to be', year: 2026, kind: 'single', tracks: [{ n: 'kid i used to be' }] },
+    { id: 'comehome', title: 'come home', year: 2026, kind: 'single', tracks: [{ n: 'come home' }] },
     { id: 'number1', title: 'number1', year: 2026, kind: 'single', tracks: [{ n: 'number1', t: '3:01' }] },
     { id: 'bonus', title: 'it be okay (bonus)', year: 2026, kind: 'versions', tracks: [
       { n: 'it be okay (sped up)', t: '3:23', sp: '2ybNHCVEhTnbMJUTF1TbBk' },
@@ -662,27 +668,27 @@
 
   const T = {
     es: {
-      'nav.bio': 'sobre', 'nav.sound': 'sonido', 'nav.latest': 'último álbum', 'nav.discog': 'discografía', 'nav.shows': 'shows', 'nav.listen': 'escucha',
+      'nav.bio': 'sobre', 'nav.sound': 'sonido', 'nav.latest': 'álbum destacado', 'nav.discog': 'discografía', 'nav.shows': 'shows', 'nav.listen': 'escucha',
       'hero.kicker': 'artista independiente — rock alternativo',
       'hero.line': 'Sonido crudo, melancólico y directo, nacido más en la escena de edits de TikTok que en una discográfica. Sus lanzamientos se mueven entre el indie rock y el alt rock, con letras que hablan de romperse y seguir intentándolo.',
       'hero.cta1': 'escuchar en Spotify', 'hero.cta2': 'ver discografía',
-      'stat.listeners': 'oyentes mensuales en Spotify', 'stat.releases': 'lanzamientos', 'stat.songs': 'canciones', 'stat.minutes': 'minutos de música',
+      'stat.listeners': 'oyentes mensuales en Spotify', 'stat.releases': 'lanzamientos', 'stat.songs': 'álbumes', 'stat.minutes': 'EPs y sencillos',
       'bio.h2': 'sobre él', 'bio.sub': 'lo que se sabe hasta ahora, con datos verificados en Spotify',
       'bio.note': 'Zardy es un artista emergente sin biografía oficial extensa: su perfil creció sobre todo gracias a fan-edits en TikTok dentro de la escena “corecore” / “losercore”, más que por prensa musical tradicional.',
       'bio.p1': 'Su sencillo “it be okay” (2026) se volvió el punto de entrada de muchos oyentes, impulsado por videos de fans en TikTok que lo etiquetan como indie rock / losercore. El tema, melancólico y directo, generó tracción suficiente para una edición bonus con versiones sped up, slowed e instrumental.',
-      'bio.p2': 'En marzo de 2026 lanzó “baby steps.”, su primer álbum: 9 canciones, con dos colaboraciones junto a Pongus (“Goodnight”, “I Don’t Care”). Antes había ido soltando sencillos como “Cult of katana”, “Grow” y “don’t play”, construyendo su audiencia sin depender de un álbum tradicional.',
+      'bio.p2': 'En marzo de 2026 lanzó “baby steps.”, su primer álbum: 9 canciones, con dos colaboraciones junto a Pongus (“Goodnight”, “I Don’t Care”). Antes había ido soltando sencillos como “Cult of katana”, “Grow” y “don’t play”, construyendo su audiencia sin depender de un álbum tradicional. Ese mismo año sumó el álbum “contemplating” y el EP “dear diary,”.',
       'tl.2021': '“Perigo Noturno”, el lanzamiento más antiguo del catálogo (versión remasterizada).',
       'tl.2025': '“Cult of katana” sale como sencillo.',
-      'tl.2026': 'El año con más música: sencillos, la edición bonus de “it be okay” y el álbum “baby steps.” el 22 de marzo.',
+      'tl.2026': 'El año con más música: los álbumes “baby steps.” (22 de marzo) y “contemplating”, el EP “dear diary,”, la edición bonus de “it be okay” y varios sencillos.',
       'sound.h2': 'el sonido', 'sound.sub': 'a qué suena zardy, en pocas palabras',
       'shuffle.title': '¿no sabes por dónde empezar?', 'shuffle.btn': '🎲 ponme una al azar', 'shuffle.again': '🎲 otra más',
       'shuffle.empty': 'Toca el botón y te elijo una canción de toda su discografía.',
       'shuffle.open': 'abrir en Spotify', 'shuffle.release': 'ver lanzamiento',
-      'latest.h2': 'último álbum', 'latest.sub': 'su álbum debut, ya disponible', 'latest.badge': 'álbum · disponible',
+      'latest.h2': 'álbum destacado', 'latest.sub': 'su álbum debut, ya disponible', 'latest.badge': 'álbum · disponible',
       'latest.listen': 'escuchar en Spotify', 'latest.details': 'ver detalles',
       'discog.h2': 'discografía', 'discog.sub': 'toca una portada para ver las canciones y escucharlas',
-      'filter.all': 'todo', 'filter.album': 'álbumes', 'filter.single': 'sencillos',
-      'dlg.play': 'escuchar aquí', 'dlg.open': 'abrir en Spotify',
+      'filter.all': 'todo', 'filter.album': 'álbumes', 'filter.single': 'EPs y sencillos',
+      'dlg.play': 'escuchar aquí', 'dlg.open': 'abrir en Spotify', 'dlg.noTracks': 'La lista de canciones se agrega pronto.',
       'shows.h2': 'shows', 'shows.sub': 'fechas confirmadas, cuando las haya',
       'shows.title': 'sin shows anunciados todavía',
       'shows.body': 'zardy no ha anunciado fechas en vivo. Cuando lo haga, esta sección se actualiza. Mientras tanto, síguelo en Spotify.',
@@ -706,31 +712,31 @@
       'listen.search': 'también búscalo en', 'listen.searchNote': 'son búsquedas, no perfiles verificados',
       'footer.disclaimer': 'fan page no oficial — datos de Spotify', 'footer.top': 'volver arriba ↑', 'footer.cta': 'escuchar en Spotify →',
       tags: ['indie rock', 'alt rock', 'corecore', 'losercore', 'melancólico', 'TikTok-core', 'lo-fi'],
-      single: 'canción', plural: 'canciones', kinds: { album: 'Álbum', single: 'Sencillo', versions: 'Versiones' },
-      songsWord: 'canciones', min: 'min', marquee: 'ZARDY ✦ BABY STEPS. ✦ IT BE OKAY ✦ LOSERCORE ✦ YA DISPONIBLE ✦ '
+      single: 'canción', plural: 'canciones', kinds: { album: 'Álbum', ep: 'EP', single: 'Sencillo', versions: 'Versiones' },
+      songsWord: 'canciones', min: 'min', marquee: 'ZARDY ✦ CONTEMPLATING ✦ BABY STEPS. ✦ IT BE OKAY ✦ LOSERCORE ✦ YA DISPONIBLE ✦ '
     },
     en: {
-      'nav.bio': 'about', 'nav.sound': 'sound', 'nav.latest': 'latest album', 'nav.discog': 'discography', 'nav.shows': 'shows', 'nav.listen': 'listen',
+      'nav.bio': 'about', 'nav.sound': 'sound', 'nav.latest': 'featured album', 'nav.discog': 'discography', 'nav.shows': 'shows', 'nav.listen': 'listen',
       'hero.kicker': 'independent artist — alternative rock',
       'hero.line': 'Raw, melancholic and direct, born more out of TikTok’s edit scene than a record label. His releases sit between indie rock and alt rock, with lyrics about breaking down and trying again.',
       'hero.cta1': 'listen on Spotify', 'hero.cta2': 'see discography',
-      'stat.listeners': 'monthly listeners on Spotify', 'stat.releases': 'releases', 'stat.songs': 'songs', 'stat.minutes': 'minutes of music',
+      'stat.listeners': 'monthly listeners on Spotify', 'stat.releases': 'releases', 'stat.songs': 'albums', 'stat.minutes': 'EPs & singles',
       'bio.h2': 'about him', 'bio.sub': 'what’s known so far, based on data verified on Spotify',
       'bio.note': 'Zardy is an emerging artist without an extensive official bio: his following grew mostly through TikTok fan edits in the “corecore” / “losercore” scene, rather than traditional music press.',
       'bio.p1': 'His single “it be okay” (2026) became many listeners’ entry point, driven by fan edits on TikTok tagging it as indie rock / losercore. The moody, direct track gained enough traction for a bonus edition with sped up, slowed and instrumental versions.',
-      'bio.p2': 'In March 2026 he released “baby steps.”, his first album: 9 songs, including two collaborations with Pongus (“Goodnight”, “I Don’t Care”). Before that he had been dropping singles like “Cult of katana”, “Grow” and “don’t play”, building an audience without leaning on a traditional album.',
+      'bio.p2': 'In March 2026 he released “baby steps.”, his first album: 9 songs, including two collaborations with Pongus (“Goodnight”, “I Don’t Care”). Before that he had been dropping singles like “Cult of katana”, “Grow” and “don’t play”, building an audience without leaning on a traditional album. The same year he added the album “contemplating” and the EP “dear diary,”.',
       'tl.2021': '“Perigo Noturno”, the oldest release in the catalog (remastered version).',
       'tl.2025': '“Cult of katana” comes out as a single.',
-      'tl.2026': 'The year with the most music: singles, the bonus edition of “it be okay” and the album “baby steps.” on March 22.',
+      'tl.2026': 'The year with the most music: the albums “baby steps.” (March 22) and “contemplating”, the EP “dear diary,”, the bonus edition of “it be okay” and several singles.',
       'sound.h2': 'the sound', 'sound.sub': 'what zardy sounds like, in a few words',
       'shuffle.title': 'not sure where to start?', 'shuffle.btn': '🎲 play me a random one', 'shuffle.again': '🎲 another one',
       'shuffle.empty': 'Hit the button and I’ll pick a song from his whole discography.',
       'shuffle.open': 'open on Spotify', 'shuffle.release': 'see release',
-      'latest.h2': 'latest album', 'latest.sub': 'his debut album, out now', 'latest.badge': 'album · out now',
+      'latest.h2': 'featured album', 'latest.sub': 'his debut album, out now', 'latest.badge': 'album · out now',
       'latest.listen': 'listen on Spotify', 'latest.details': 'see details',
       'discog.h2': 'discography', 'discog.sub': 'tap a cover to see the songs and listen',
-      'filter.all': 'all', 'filter.album': 'albums', 'filter.single': 'singles',
-      'dlg.play': 'listen here', 'dlg.open': 'open on Spotify',
+      'filter.all': 'all', 'filter.album': 'albums', 'filter.single': 'EPs & singles',
+      'dlg.play': 'listen here', 'dlg.open': 'open on Spotify', 'dlg.noTracks': 'The tracklist is coming soon.',
       'shows.h2': 'shows', 'shows.sub': 'confirmed dates, whenever there are any',
       'shows.title': 'no shows announced yet',
       'shows.body': 'zardy hasn’t announced any live dates. This section will update when he does. Meanwhile, follow him on Spotify.',
@@ -754,8 +760,8 @@
       'listen.search': 'also look for him on', 'listen.searchNote': 'these are searches, not verified profiles',
       'footer.disclaimer': 'unofficial fan page — data from Spotify', 'footer.top': 'back to top ↑', 'footer.cta': 'listen on Spotify →',
       tags: ['indie rock', 'alt rock', 'corecore', 'losercore', 'melancholic', 'TikTok-core', 'lo-fi'],
-      single: 'song', plural: 'songs', kinds: { album: 'Album', single: 'Single', versions: 'Versions' },
-      songsWord: 'songs', min: 'min', marquee: 'ZARDY ✦ BABY STEPS. ✦ IT BE OKAY ✦ LOSERCORE ✦ OUT NOW ✦ '
+      single: 'song', plural: 'songs', kinds: { album: 'Album', ep: 'EP', single: 'Single', versions: 'Versions' },
+      songsWord: 'songs', min: 'min', marquee: 'ZARDY ✦ CONTEMPLATING ✦ BABY STEPS. ✦ IT BE OKAY ✦ LOSERCORE ✦ OUT NOW ✦ '
     }
   };
 
@@ -764,7 +770,7 @@
 
   /* ================= HELPERS ================= */
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const sec = t => { const [m, s] = t.split(':').map(Number); return m * 60 + s; };
+  const sec = t => { if (!t) return 0; const [m, s] = t.split(':').map(Number); return m * 60 + s; };
   const mmss = s => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
   const hash = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
   const runtime = r => r.tracks.reduce((a, x) => a + sec(x.t), 0);
@@ -772,11 +778,24 @@
   const trackWord = n => (n === 1 ? T[lang].single : T[lang].plural);
   const byId = id => releases.find(r => r.id === id);
 
-  function coverHTML(r) {
-    if (r.cover) return `<div class="cover"><img src="${r.cover}" alt="${esc(r.title)}" loading="lazy" draggable="false"><i class="glare"></i></div>`;
+  // Portadas: URL remota (r.cover) o archivo local /static/covers/<id>.jpg|png|webp; si no existe, se genera una.
+  const COVER_EXTS = ['jpg', 'png', 'webp'];
+  function genCoverHTML(r) {
     const h = hash(r.title), a = h % 360, b = (a + 35 + (h >> 8) % 70) % 360, ang = (h >> 4) % 360;
     return `<div class="cover gen" style="background:linear-gradient(${ang}deg,hsl(${a} 42% 13%),hsl(${b} 52% 30%))"><span class="gen-title">${esc(r.title)}</span><span class="gen-tag">zardy</span><i class="glare"></i></div>`;
   }
+  function coverHTML(r) {
+    if (r.cover) return `<div class="cover"><img src="${r.cover}" alt="${esc(r.title)}" loading="lazy" draggable="false"><i class="glare"></i></div>`;
+    return `<div class="cover"><img src="/static/covers/${r.id}.${COVER_EXTS[0]}" data-cv="${r.id}" data-try="0" alt="${esc(r.title)}" loading="lazy" draggable="false"><i class="glare"></i></div>`;
+  }
+  document.addEventListener('error', e => {
+    const im = e.target;
+    if (!(im instanceof HTMLImageElement) || !im.dataset.cv) return;
+    const i = +im.dataset.try + 1;
+    if (i < COVER_EXTS.length) { im.dataset.try = i; im.src = `/static/covers/${im.dataset.cv}.${COVER_EXTS[i]}`; return; }
+    const r = byId(im.dataset.cv), holder = im.closest('.cover');
+    if (r && holder) holder.outerHTML = genCoverHTML(r);
+  }, true);
 
   /* ================= RENDER ================= */
   function renderTags() {
@@ -792,11 +811,10 @@
     });
   }
   function renderStats() {
-    const songs = allTracks().length, total = releases.reduce((a, r) => a + runtime(r), 0);
     $('#st-listeners').dataset.count = LISTENERS_K;
     $('#st-releases').dataset.count = releases.length;
-    $('#st-songs').dataset.count = songs;
-    $('#st-min').dataset.count = Math.round(total / 60);
+    $('#st-songs').dataset.count = releases.filter(r => r.kind === 'album').length;
+    $('#st-min').dataset.count = releases.filter(r => r.kind !== 'album').length;
   }
   function renderLatest() {
     const r = byId('babysteps'), t = T[lang];
@@ -815,10 +833,10 @@
       <button class="rel-card" type="button" data-open="${r.id}">
         ${coverHTML(r)}
         <span class="rel-title">${esc(r.title)}</span>
-        <span class="rel-meta">${t.kinds[r.kind]} · ${r.year} · ${r.tracks.length} ${trackWord(r.tracks.length)}</span>
+        <span class="rel-meta">${t.kinds[r.kind]} · ${r.year}${r.tracks.length ? ' · ' + r.tracks.length + ' ' + trackWord(r.tracks.length) : ''}</span>
       </button>`).join('');
-    const songs = allTracks().length, total = releases.reduce((a, r) => a + runtime(r), 0);
-    $('#disc-summary').textContent = `${releases.length} ${lang === 'es' ? 'lanzamientos' : 'releases'} · ${songs} ${t.songsWord} · ${mmss(total)}`;
+    const albums = releases.filter(r => r.kind === 'album').length;
+    $('#disc-summary').textContent = `${releases.length} ${lang === 'es' ? 'lanzamientos' : 'releases'} · ${albums} ${lang === 'es' ? 'álbumes' : 'albums'}`;
     $$('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
   }
 
@@ -833,7 +851,7 @@
       <div class="dlg-side">
         ${coverHTML(r)}
         <h3>${esc(r.title)}</h3>
-        <p class="dlg-meta">${t.kinds[r.kind]} · ${r.year} · ${r.tracks.length} ${trackWord(r.tracks.length)} · ${mmss(runtime(r))}</p>
+        <p class="dlg-meta">${t.kinds[r.kind]} · ${r.year}${r.tracks.length ? ' · ' + r.tracks.length + ' ' + trackWord(r.tracks.length) : ''}${r.tracks.length && r.tracks.every(x => x.t) ? ' · ' + mmss(runtime(r)) : ''}</p>
         <div class="dlg-actions">
           ${r.embed ? `<button class="btn" type="button" id="dlg-play">▶ ${t['dlg.play']}</button>` : ''}
           <a class="btn ghost" href="${r.url || ARTIST_URL}" target="_blank" rel="noopener">${t['dlg.open']}</a>
@@ -843,8 +861,9 @@
         <ol class="dlg-tracks">${r.tracks.map((x, i) => `
           <li><span class="track-idx">${i + 1}</span><span class="track-name">${esc(x.n)}</span>
           ${x.sp ? `<button class="mini-play" type="button" data-track="${x.sp}" aria-label="▶ ${esc(x.n)}">▶</button>` : ''}
-          <span class="track-time">${x.t}</span></li>`).join('')}
+          <span class="track-time">${x.t || '—'}</span></li>`).join('')}
         </ol>
+        ${r.tracks.length ? '' : `<p class="dlg-meta">${t['dlg.noTracks']}</p>`}
         <div id="dlg-embed"></div>
       </div>`;
     if (!dlg.open) dlg.showModal();
@@ -874,7 +893,7 @@
     $('#shuffle-btn').textContent = lastPick ? t['shuffle.again'] : t['shuffle.btn'];
     if (!lastPick) { out.innerHTML = `<span>${t['shuffle.empty']}</span>`; return; }
     const href = lastPick.sp ? `https://open.spotify.com/track/${lastPick.sp}` : (lastPick.r.url || ARTIST_URL);
-    out.innerHTML = `<b>${esc(lastPick.n)}</b><span>${esc(lastPick.r.title)} · ${lastPick.r.year} · ${lastPick.t}</span>
+    out.innerHTML = `<b>${esc(lastPick.n)}</b><span>${esc(lastPick.r.title)} · ${lastPick.r.year}${lastPick.t ? ' · ' + lastPick.t : ''}</span>
       <div class="row"><a href="${href}" target="_blank" rel="noopener">${t['shuffle.open']} →</a>
       <button type="button" data-open="${lastPick.r.id}">${t['shuffle.release']}</button></div>`;
   }
@@ -887,7 +906,7 @@
   /* ================= EN NÚMEROS ================= */
   let selYear = null;
   function renderFacts() {
-    const t = T[lang], tr = allTracks(), byLen = (a, b) => sec(a.t) - sec(b.t);
+    const t = T[lang], tr = allTracks().filter(x => x.t), byLen = (a, b) => sec(a.t) - sec(b.t);
     const sorted = [...tr].sort(byLen), longest = sorted[sorted.length - 1], shortest = sorted[0];
     const feats = tr.filter(x => /feat\./i.test(x.n));
     const who = [...new Set(feats.map(x => (x.n.match(/feat\.\s*([^)]+)/i) || [])[1]).filter(Boolean))];
@@ -900,7 +919,7 @@
       card(mmss(sec(longest.t)), t['f.longest'], longest.n, longest.r.id) +
       card(mmss(sec(shortest.t)), t['f.shortest'], shortest.n, shortest.r.id) +
       card(feats.length, t['f.collabs'], who.length ? `${t['f.with']} ${who.join(', ')}` : '', 'babysteps') +
-      card(mmss(avg), t['f.avg'], `${tr.length} ${t.songsWord}`) +
+      card(mmss(avg), t['f.avg'], '') +
       card(since, t['f.since'], byId('perigo') ? byId('perigo').title : '', 'perigo');
     renderBars();
   }
@@ -931,7 +950,7 @@
   const lb = $('#lightbox');
   function initWall() {
     const wall = $('#wall');
-    const ids = ['iboa', 'babysteps', 'number1', 'dontplay', 'grow', 'katana', 'perigo', 'bonus'];
+    const ids = ['iboa', 'babysteps', 'contemplating', 'deardiary', 'number1', 'hikikomori', 'chronic', 'kidiused', 'comehome', 'dontplay', 'grow', 'katana'];
     wall.innerHTML =
       `<div class="polaroid" tabindex="0" role="button" data-photo="${PHOTO}"><div class="pic"><div class="cover"><img src="${PHOTO}" alt="zardy" draggable="false" style="filter:grayscale(.5) contrast(1.1)"></div></div><span class="cap" data-i18n="gallery.photo">zardy</span></div>` +
       ids.map(id => { const r = byId(id); return `<div class="polaroid" tabindex="0" role="button" data-rel="${id}"><div class="pic">${coverHTML(r)}</div><span class="cap">${esc(r.title)}</span></div>`; }).join('');
