@@ -7,8 +7,8 @@ ARTIST_DATA = {
     "genre": "Indie Rock / Alt Rock / Corecore",
     "spotify_id": "5OylQa5tfrpPvkZLoeHPDh",
     "stats": {
-        "monthly_listeners": "58.8K",
-        "releases": 8,
+        "monthly_listeners": "400K",
+        "releases": 14,
         "active_years": "2021–2026"
     },
     "socials": {
@@ -16,6 +16,12 @@ ARTIST_DATA = {
         "tiktok": "https://www.tiktok.com/@zardyeoeo"
     },
     "releases": [
+        {"id": "contemplating", "title": "contemplating", "year": 2026, "kind": "Album", "tracks": []},
+        {"id": "deardiary", "title": "dear diary,", "year": 2026, "kind": "EP", "tracks": []},
+        {"id": "hikikomori", "title": "hikikomori", "year": 2026, "tracks": [{"name": "hikikomori"}]},
+        {"id": "chronic", "title": "chronic", "year": 2026, "tracks": [{"name": "chronic"}]},
+        {"id": "kidiused", "title": "kid i used to be", "year": 2026, "tracks": [{"name": "kid i used to be"}]},
+        {"id": "comehome", "title": "come home", "year": 2026, "tracks": [{"name": "come home"}]},
         {
             "id": "rel-1",
             "title": "it be okay (bonus)",
