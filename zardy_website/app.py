@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, url_for
+from flask import Flask, render_template, jsonify, url_for, send_from_directory
 import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -16,6 +16,12 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 
 LISTENERS_K = 534.9          # oyentes mensuales en Spotify (en miles)
 LISTENERS_CHECKED = '2026-10'
+
+# Google Search Console
+#  - Verificación por archivo HTML: el archivo google....html de la raíz se sirve solo (ruta más abajo).
+#  - Verificación por etiqueta <meta>: pega aquí SOLO el valor de content="..." que te da Google.
+GOOGLE_SITE_VERIFICATION = ''
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def cdn(image_hash):
@@ -119,6 +125,10 @@ ARTIST = {
 }
 
 
+@app.route('/robots.txt')
+def robots():
+    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
+
 def static_url(path):
     """Las rutas relativas se resuelven dentro de /static; las URLs completas se dejan igual."""
     if not path or path.startswith(('http://', 'https://', '/')):
@@ -128,6 +138,15 @@ def static_url(path):
 @app.route('/robots.txt')
 def robots():
     return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
+
+
+@app.route('/google<code>.html')
+def google_verification_file(code):
+    # sirve los archivos de verificación de Google Search Console que estén en la raíz del proyecto
+    name = f'google{code}.html'
+    if not code.isalnum() or not os.path.isfile(os.path.join(BASE_DIR, name)):
+        return 'Not found', 404
+    return send_from_directory(BASE_DIR, name, mimetype='text/html')
 
 
 def artist_payload():
@@ -143,7 +162,7 @@ def artist_payload():
 
 @app.route('/')
 def home():
-    return render_template('index.html', artist=artist_payload())
+    return render_template('index.html', artist=artist_payload(), google_verification=GOOGLE_SITE_VERIFICATION)
 
 
 @app.route('/api/artist')
