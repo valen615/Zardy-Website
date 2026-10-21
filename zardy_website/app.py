@@ -14,7 +14,7 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 #   tracks: n = nombre, t = duración, sp = ID de Spotify de la canción, feat = colaborador
 # ---------------------------------------------------------------------------
 
-LISTENERS_K = 534.9          # oyentes mensuales en Spotify (en miles)
+LISTENERS_K = 534.9           # oyentes mensuales en Spotify (en miles)
 LISTENERS_CHECKED = '2026-10'
 
 # Google Search Console
@@ -110,12 +110,10 @@ ARTIST = {
     "listeners_k": LISTENERS_K,
     "listeners_checked": LISTENERS_CHECKED,
     "photo": "https://i.scdn.co/image/ab6761610000e5eb261db1a4813a539df598d22e",
-    # Solo Spotify y TikTok están verificados. Agrega más perfiles aquí cuando los tengas.
     "socials": [
         {"name": "spotify", "url": "https://open.spotify.com/artist/5OylQa5tfrpPvkZLoeHPDh"},
         {"name": "tiktok", "url": "https://www.tiktok.com/@zardyeoeo", "handle": "@zardyeoeo"},
     ],
-    # Búsquedas (no son perfiles verificados)
     "searches": [
         {"name": "youtube", "url": "https://www.youtube.com/results?search_query=zardy+it+be+okay"},
         {"name": "apple music", "url": "https://music.apple.com/search?term=zardy%20contemplating"},
@@ -125,16 +123,14 @@ ARTIST = {
 }
 
 
-@app.route('/robots.txt')
-def robots():
-    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
-
 def static_url(path):
     """Las rutas relativas se resuelven dentro de /static; las URLs completas se dejan igual."""
     if not path or path.startswith(('http://', 'https://', '/')):
         return path
     return url_for('static', filename=path)
 
+
+# Una sola definición de /robots.txt
 @app.route('/robots.txt')
 def robots():
     return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
@@ -142,7 +138,6 @@ def robots():
 
 @app.route('/google<code>.html')
 def google_verification_file(code):
-    # sirve los archivos de verificación de Google Search Console que estén en la raíz del proyecto
     name = f'google{code}.html'
     if not code.isalnum() or not os.path.isfile(os.path.join(BASE_DIR, name)):
         return 'Not found', 404
@@ -168,7 +163,6 @@ def home():
 @app.route('/api/artist')
 def get_artist_info():
     return jsonify(artist_payload())
-    
 
 
 if __name__ == '__main__':
