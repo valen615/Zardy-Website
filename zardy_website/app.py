@@ -130,10 +130,9 @@ def static_url(path):
     return url_for('static', filename=path)
 
 
-# Una sola definición de /robots.txt
 @app.route('/robots.txt')
 def robots():
-    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
+    return send_from_directory('static', 'robots.txt')
 
 
 @app.route('/google<code>.html')
