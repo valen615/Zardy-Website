@@ -125,6 +125,10 @@ def static_url(path):
         return path
     return url_for('static', filename=path)
 
+@app.route('/robots.txt')
+def robots():
+    return "User-agent: *\nAllow: /", 200, {'Content-Type': 'text/plain'}
+
 
 def artist_payload():
     releases = []
@@ -145,6 +149,7 @@ def home():
 @app.route('/api/artist')
 def get_artist_info():
     return jsonify(artist_payload())
+    
 
 
 if __name__ == '__main__':
