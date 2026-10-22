@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zardy-website.onrender.com/sitemap.xml
