@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+{% if google_verification %}<meta name="google-site-verification" content="{{ google_verification }}">{% endif %}
+<title>Zardy (ザルディ) — Biografía, música y discografía | Fan page</title>
+<meta name="description" content="Fan page no oficial de Zardy (ザルディ): descubre su biografía, música, álbumes, sencillos y discografía de bedroom indie.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://zardy-website.onrender.com/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='icons/favicon.svg') }}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='icons/favicon-192.png') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/apple-touch-icon.png') }}">
+<link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+<meta name="application-name" content="Zardy Fan Page">
+<meta name="apple-mobile-web-app-title" content="Zardy">
+<meta property="og:title" content="Zardy (ザルディ) — Biografía, música y discografía">
+<meta property="og:description" content="Explora la biografía, los álbumes, los sencillos y la música de Zardy en esta fan page no oficial.">
+<meta property="og:url" content="https://zardy-website.onrender.com/">
+<meta property="og:site_name" content="Zardy Fan Page">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="{{ artist.photo }}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zardy (ザルディ) — Biografía, música y discografía">
+<meta name="twitter:description" content="Biografía, álbumes, sencillos y música de Zardy. Fan page no oficial.">
+<meta property="og:image:alt" content="Dibujo de zardy con su gorro marrón con boca de monstruo">
+<script type="application/ld+json">{{ structured_data|tojson }}</script>
+<meta name="theme-color" content="#efe8d8">
+<script>
+  // tema + marca de JS antes de pintar (evita parpadeos)
+  (function () {
+    var d = document.documentElement, t = 'day';
+    d.className += ' js';
+    try { t = localStorage.getItem('zardy-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'); } catch (e) {}
+    d.setAttribute('data-theme', t);
+  })();
+</script>
+<noscript><style>#loader{display:none}</style></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://i.scdn.co">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Caveat:wght@500;700&family=Dela+Gothic+One&family=DotGothic16&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- sprites -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sym-hat" viewBox="0 0 120 112">
+    <g stroke="#1b1714" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M18 50C12 70 12 92 22 102C30 108 40 100 39 88L38 58Z" fill="#4b2711"/>
+      <path d="M102 50C108 70 108 92 98 102C90 108 80 100 81 88L82 58Z" fill="#4b2711"/>
+      <path d="M12 60C8 26 34 8 60 8C86 8 112 26 108 60C90 70 30 70 12 60Z" fill="#7a4220"/>
+      <path d="M26 34C30 22 40 15 52 13" fill="none" stroke="#a8652f" stroke-width="4"/>
+      <rect x="38" y="36" width="44" height="20" rx="3" fill="#e2361f"/>
+    </g>
+    <path d="M40 38.5L45 46L50 38.5L55 46L60 38.5L65 46L70 38.5L75 46L80 38.5Z" fill="#fff8ec"/>
+    <path d="M40 54L45 49.5L50 54L55 49.5L60 54L65 49.5L70 54L75 49.5L80 54Z" fill="#fff8ec"/>
+    <circle cx="44" cy="27" r="4" fill="#1b1714"/>
+    <circle cx="76" cy="27" r="4" fill="#1b1714"/>
+  </symbol>
+  <symbol id="sym-spark" viewBox="0 0 40 40">
+    <path d="M20 0C21 12 28 19 40 20 28 21 21 28 20 40 19 28 12 21 0 20 12 19 19 12 20 0Z" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main" data-i18n="skip">saltar al contenido</a>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="ld-half ld-top"></div>
+  <div class="ld-half ld-bot"></div>
+  <div class="ld-in">
+    <div class="ld-meta"><span>ZARDY ZINE</span><span>ザルディ</span><span>VOL.15</span></div>
+    <svg class="ld-hat" viewBox="0 0 120 112">
+      <g stroke="#1b1714" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path class="d" style="--d:.05s;--f:#4b2711" pathLength="1" d="M18 50C12 70 12 92 22 102C30 108 40 100 39 88L38 58Z"/>
+        <path class="d" style="--d:.1s;--f:#4b2711" pathLength="1" d="M102 50C108 70 108 92 98 102C90 108 80 100 81 88L82 58Z"/>
+        <path class="d" style="--d:0s;--f:#7a4220" pathLength="1" d="M12 60C8 26 34 8 60 8C86 8 112 26 108 60C90 70 30 70 12 60Z"/>
+        <path class="d" style="--d:.3s;--f:#e2361f" pathLength="1" d="M41 36H79Q82 36 82 39V53Q82 56 79 56H41Q38 56 38 53V39Q38 36 41 36Z"/>
+      </g>
+      <path class="pop" style="--d:.95s" d="M40 38.5L45 46L50 38.5L55 46L60 38.5L65 46L70 38.5L75 46L80 38.5Z" fill="#fff8ec"/>
+      <path class="pop" style="--d:1s" d="M40 54L45 49.5L50 54L55 49.5L60 54L65 49.5L70 54L75 49.5L80 54Z" fill="#fff8ec"/>
+      <circle class="pop" style="--d:.8s" cx="44" cy="27" r="4" fill="#1b1714"/>
+      <circle class="pop" style="--d:.85s" cx="76" cy="27" r="4" fill="#1b1714"/>
+    </svg>
+    <div class="ld-count"><span id="ld-num">000</span></div>
+    <div class="ld-bar"><i id="ld-bar"></i></div>
+    <div class="ld-skip" data-i18n="intro.skip">toca para entrar</div>
+  </div>
+</div>
+
+<!-- ============ HUD (marco de impresión) ============ -->
+<div class="hud" aria-hidden="true">
+  <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+  <div class="hud-l"><span id="hud-clock">MYT --:--:--</span><span class="hud-sep"></span><span>ザルディ・ファンジン — VOL.15</span></div>
+  <div class="hud-r"><span id="hud-sec">§00</span><span class="hud-sep"></span><span id="hud-pct">000%</span><span class="hud-sep"></span><span id="hud-hats">HATS 0/5</span></div>
+</div>
+
+<div class="cursor" id="cursor" aria-hidden="true"><span id="cursor-label"></span></div>
+<div id="progress" aria-hidden="true"><i></i></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav" aria-label="principal">
+  <a class="logo" href="#top" aria-label="zardy — inicio">
+    <svg class="logo-hat" aria-hidden="true"><use href="#sym-hat"/></svg>
+    <span class="logo-word">zardy</span><span class="logo-kana" aria-hidden="true">ザルディ</span>
+  </a>
+  <div class="nav-links">
+    <a href="#bio" data-nav><i>01</i><span data-i18n="nav.bio">sobre</span></a>
+    <a href="#diario" data-nav><i>02</i><span data-i18n="nav.diary">diario</span></a>
+    <a href="#sonido" data-nav><i>04</i><span data-i18n="nav.sound">sonido</span></a>
+    <a href="#album" data-nav><i>05</i><span data-i18n="nav.album">álbum</span></a>
+    <a href="#canciones" data-nav><i>06</i><span data-i18n="nav.songs">canciones</span></a>
+    <a href="#discografia" data-nav><i>09</i><span data-i18n="nav.discog">discografía</span></a>
+    <a href="#fanzone" data-nav><i>11</i><span data-i18n="nav.fan">fan zone</span></a>
+  </div>
+  <div class="nav-tools">
+    <button class="tool-btn" id="theme-btn" type="button" aria-pressed="false" data-magnetic>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="bulb" d="M12 6a5 5 0 0 0-3 9c.6.5.9 1 .9 1.7v.3h4.2v-.3c0-.7.3-1.2.9-1.7A5 5 0 0 0 12 6z"/><path d="M10 20h4M10.6 22.4h2.8"/><path class="rays" d="M12 1.2v2.2M4.4 4.2l1.5 1.5M19.6 4.2l-1.5 1.5M1.8 11h2.2M20 11h2.2"/></svg>
+    </button>
+    <div class="lang" role="group" aria-label="idioma / language">
+      <button id="btn-es" type="button">ES</button>
+      <button id="btn-en" type="button">EN</button>
+    </div>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span data-i18n="menu.open">menú</span><i aria-hidden="true"></i></button>
+  </div>
+</nav>
+
+<!-- índice a pantalla completa -->
+<div class="menu" id="menu" hidden data-lenis-prevent>
+  <div class="menu-kana" aria-hidden="true">ザルディ</div>
+  <nav class="menu-links" id="menu-links" aria-label="menú"></nav>
+  <div class="menu-foot"><span id="menu-clock"></span><span>ザルディ・ファンジン — VOL.15</span></div>
+</div>
+
+<main id="main">
+
+<!-- ============ PORTADA ============ -->
+<header class="hero" id="top" data-hud="portada">
+  <div class="hero-meta wrap">
+    <span>Nº<b id="hero-issue">15</b> — <span id="hero-date"></span></span>
+    <span class="hero-meta-c">ザルディ・ファンジン</span>
+    <span id="hero-time"></span>
+  </div>
+
+  <div class="hero-stage wrap">
+    <div class="hero-copy">
+      <p class="hero-paren" aria-hidden="true">(ザルディ) <span>(zardy)</span></p>
+      <p class="kicker" data-i18n="hero.kicker">bedroom indie · alt rock · desde Malasia</p>
+      <p class="hero-line" data-i18n="hero.line">Canciones hechas en su cuarto, entre el indie rock y el alt rock: crudas, melancólicas y directas. Su música viajó por los edits de TikTok antes que por cualquier discográfica.</p>
+      <p class="hero-zh" lang="zh-Hans" aria-hidden="true">来自马来西亚的小艺术家 · 直接从他的卧室里来的</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://open.spotify.com/artist/{{ artist.spotify_id }}" target="_blank" rel="noopener" data-magnetic data-cursor="spotify ↗"><span aria-hidden="true">▶</span> <span data-i18n="hero.cta1">escuchar en Spotify</span></a>
+        <a class="btn ghost" href="#discografia" data-magnetic data-i18n="hero.cta2">ver discografía</a>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <figure class="hero-card" data-cursor="zardy ♡">
+        <span class="tape-bit t1" aria-hidden="true"></span><span class="tape-bit t2" aria-hidden="true"></span>
+        <div class="hero-img"><img src="{{ artist.photo }}" width="640" height="640" data-i18n-alt="hero.alt" alt="dibujo de zardy con su gorro marrón"></div>
+        <figcaption data-i18n="hero.arrow">este es zardy</figcaption>
+      </figure>
+      <div class="stickers" id="hero-stickers"></div>
+      <a class="badge-spin" id="badge-spin" href="#escucha" data-magnetic data-cursor="↓">
+        <svg class="badge-ring" viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="badge-circle" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+          <circle cx="100" cy="100" r="98" class="badge-bg"/>
+          <text class="badge-text"><textPath href="#badge-circle" id="badge-text">ZARDY ✦ ザルディ ✦ BEDROOM INDIE ✦ MALAYSIA ✦ </textPath></text>
+        </svg>
+        <svg class="badge-hat" aria-hidden="true"><use href="#sym-hat"/></svg>
+        <span class="sr-only" data-i18n="nav.listen">escucha</span>
+      </a>
+    </div>
+  </div>
+
+  <h1 class="mega" id="mega" aria-label="zardy">
+    <span class="mega-plate red" aria-hidden="true"><span>Z</span><span>A</span><span>R</span><span>D</span><span>Y</span></span>
+    <span class="mega-plate ink" aria-hidden="true"><span>Z</span><span>A</span><span>R</span><span>D</span><span>Y</span></span>
+  </h1>
+
+  <div class="spec wrap">
+    <div class="spec-cell"><b id="st-listeners">0</b><span data-i18n="stat.listeners">oyentes al mes</span></div>
+    <div class="spec-cell"><b id="st-releases">0</b><span data-i18n="stat.releases">lanzamientos</span></div>
+    <div class="spec-cell"><b id="st-songs">0</b><span data-i18n="stat.songs">canciones</span></div>
+    <div class="spec-cell"><b id="st-collabs">0</b><span data-i18n="stat.collabs">colaboraciones</span></div>
+    <div class="spec-cell"><b id="st-since">0</b><span data-i18n="stat.since">desde</span></div>
+    <a class="spec-cell scroll-cue" href="#manifiesto"><span data-i18n="hero.scroll">baja</span><i aria-hidden="true">↓</i></a>
+  </div>
+</header>
+
+<div class="tapes" aria-hidden="true">
+  <div class="tape-strip a"><div class="tape-track" data-marquee="1" id="tape-a"></div></div>
+  <div class="tape-strip b"><div class="tape-track" data-marquee="-1" id="tape-b"></div></div>
+</div>
+
+<!-- ============ ESTRENO (se arma solo con el lanzamiento más nuevo) ============ -->
+<section class="drop tone-ink" id="estreno" data-hud="estreno">
+  <div class="drop-bg" aria-hidden="true"><div class="tape-track" data-marquee="-1" id="drop-bg"></div></div>
+  <div class="wrap">
+    <div class="sh-top"><span class="sh-no">★</span><span>しんきょく</span><i class="sh-line"></i><span data-i18n="drop.label">estreno</span></div>
+    <div class="drop-grid">
+      <div class="drop-art reveal" id="drop-art">
+        <div class="cd" aria-hidden="true"><div class="cd-disc" id="drop-cd"></div><i class="cd-sheen"></i></div>
+        <div class="jewel" id="drop-case"></div>
+      </div>
+      <div class="drop-info reveal">
+        <span class="badge" id="drop-badge"></span>
+        <p class="drop-who" id="drop-who"></p>
+        <h2 class="drop-title" id="drop-title"></h2>
+        <p class="drop-meta" id="drop-meta"></p>
+        <p class="drop-note" id="drop-note"></p>
+        <div class="drop-actions" id="drop-actions"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANIFIESTO ============ -->
+<section class="statement" id="manifiesto" data-hud="manifiesto">
+  <div class="wrap">
+    <div class="sh-top"><span class="sh-no">00</span><span>マニフェスト</span><i class="sh-line"></i><span data-i18n="stmt.label">manifiesto</span></div>
+    <p class="stmt" id="stmt"></p>
+    <p class="stmt-sign" data-i18n="stmt.sign">— un fan, desde algún otro cuarto</p>
+  </div>
+</section>
+
+<!-- ============ 01 SOBRE ============ -->
+<section class="section" id="bio" data-hud="01">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">01</span><span>プロフィール</span><i class="sh-line"></i><span>p.01</span></div>
+      <h2 class="sh-title"><span data-i18n="bio.h2">sobre él</span></h2>
+      <p class="sh-note" data-i18n="bio.sub">lo que se sabe, sin inventar nada</p>
+    </header>
+    <div class="bio-grid">
+      <div class="bio-vert" aria-hidden="true">ザルディ</div>
+      <article class="page lined reveal">
+        <p data-i18n="bio.p1">zardy es un artista independiente de <mark>Malasia</mark> que hace música <mark>desde su cuarto</mark>: así se presenta él mismo en la portada de “contemplating”. Su sonido vive entre el indie rock, el alt rock y la melancolía de internet.</p>
+        <p data-i18n="bio.p2">Su perfil creció sobre todo gracias a fan-edits de TikTok en la escena “corecore” / “losercore”. En marzo de 2026 sacó <b>“baby steps.”</b>, su primer álbum (9 canciones, dos con Pongus), y en julio llegó <b>“it be okay”</b>, la canción que le trajo muchísima gente nueva; tanta, que tuvo edición bonus con versiones sped up, slowed e instrumental.</p>
+        <p data-i18n="bio.p3">En septiembre de 2026 publicó <b>“contemplating”</b>, su segundo álbum: 11 canciones con Luxii, hiroshimal y jaylu, y hasta un título en malayo, “bunga senja” (algo así como “flor del atardecer”). En octubre siguió con <b>“shower”</b>, junto a Hyso, y <b>“Haze”</b>, una colaboración con zyun.</p>
+      </article>
+      <aside class="bio-side">
+        <div class="sticky reveal" data-i18n="bio.note">ojo: zardy no tiene una biografía oficial larga. Todo lo de aquí sale de Spotify y de lo que él mismo ha publicado ✍️</div>
+        <div class="credits-box reveal">
+          <h3 class="mono-h" data-i18n="bio.collabs">ha colaborado con</h3>
+          <ul class="credits" id="collab-list"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 DIARIO (scroll horizontal, panel fijado) ============ -->
+<section class="section tone-ink diary-sec" id="diario" data-hud="02">
+  <div class="diary-pin" id="diary-pin">
+    <div class="diary-bg" aria-hidden="true"><span id="diary-year">2021</span></div>
+    <div class="wrap diary-top">
+      <header class="sh reveal">
+        <div class="sh-top"><span class="sh-no">02</span><span>ダイアリー</span><i class="sh-line"></i><span data-i18n="tl.hint">desliza →</span></div>
+        <h2 class="sh-title"><span data-i18n="tl.title">diario</span></h2>
+        <p class="sh-note" data-i18n="tl.sub">cada lanzamiento, en orden</p>
+      </header>
+      <div class="diary-count" aria-hidden="true"><b id="diary-idx">01</b><span>/<i id="diary-total">01</i></span></div>
+    </div>
+    <div class="hscroll" id="hscroll" tabindex="0" data-i18n-aria="tl.title" aria-label="diario de lanzamientos">
+      <ol class="htrack" id="diary"></ol>
+    </div>
+    <div class="wrap diary-foot">
+      <div class="hbar" aria-hidden="true"><i id="hbar"></i></div>
+      <p class="diary-also"><span data-i18n="tl.also">también en 2026 (sin fecha exacta):</span> <span class="chips inline" id="diary-also"></span></p>
+    </div>
+    <button class="hidden-hat hh-diary" type="button" data-hat="1" data-i18n-aria="hunt.aria" aria-label="gorro escondido"><svg aria-hidden="true"><use href="#sym-hat"/></svg></button>
+  </div>
+</section>
+
+<!-- ============ 03 NÚMEROS ============ -->
+<section class="section" id="datos" data-hud="03">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">03</span><span>データ</span><i class="sh-line"></i><span>p.03</span></div>
+      <h2 class="sh-title"><span data-i18n="facts.h2">en números</span></h2>
+      <p class="sh-note" data-i18n="facts.sub">contado a mano (bueno, con JavaScript)</p>
+    </header>
+    <div class="facts reveal" id="facts"></div>
+    <div class="chart-card graph reveal">
+      <button class="hidden-hat hh-chart" type="button" data-hat="2" data-i18n-aria="hunt.aria" aria-label="gorro escondido"><svg aria-hidden="true"><use href="#sym-hat"/></svg></button>
+      <div class="chart-top">
+        <h3 class="mono-h" data-i18n="chart.title">lanzamientos por año</h3>
+        <span class="hand-note small" data-i18n="chart.note">2026 fue una locura 📈 · toca un año</span>
+      </div>
+      <div class="bars" id="bars"></div>
+      <div class="chips" id="year-chips"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 SONIDO ============ -->
+<section class="section tone-red" id="sonido" data-hud="04">
+  <div class="halftone" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">04</span><span>サウンド</span><i class="sh-line"></i><span>p.04</span></div>
+      <h2 class="sh-title"><span data-i18n="sound.h2">el sonido</span></h2>
+      <p class="sh-note" data-i18n="sound.sub">a qué suena zardy, en stickers</p>
+    </header>
+    <div class="sound-grid">
+      <div class="reveal">
+        <div class="stickers-tags" id="tag-cloud"></div>
+        <p class="sound-quote" data-i18n="sound.quote">para escuchar con audífonos, de noche, <mark>mirando al techo</mark>.</p>
+      </div>
+      <svg class="cassette reveal" viewBox="0 0 240 152" aria-hidden="true">
+        <rect x="4" y="4" width="232" height="144" rx="12" class="cs-body"/>
+        <rect x="22" y="18" width="196" height="78" rx="6" class="cs-label"/>
+        <line x1="34" y1="44" x2="206" y2="44" class="cs-rule"/>
+        <text x="34" y="38" class="cs-text" id="cs-text">zardy — side A</text>
+        <rect x="62" y="54" width="116" height="34" rx="17" class="cs-window"/>
+        <g class="reel" style="transform-origin:86px 71px"><circle cx="86" cy="71" r="13" class="cs-reel"/><path d="M86 60v22M75 71h22M78 63l16 16M94 63L78 79" class="cs-spoke"/></g>
+        <g class="reel" style="transform-origin:154px 71px"><circle cx="154" cy="71" r="13" class="cs-reel"/><path d="M154 60v22M143 71h22M146 63l16 16M162 63l-16 16" class="cs-spoke"/></g>
+        <path d="M54 148l14-34h104l14 34" class="cs-trap"/>
+        <circle cx="90" cy="132" r="5" class="cs-hole"/><circle cx="150" cy="132" r="5" class="cs-hole"/>
+      </svg>
+    </div>
+
+    <div class="gacha-box ink-dark reveal">
+      <div class="gacha" id="gacha" aria-hidden="true">
+        <div class="g-dome">
+          <i style="--x:12%;--y:52%;--c:#e2361f;--r:20deg"></i>
+          <i style="--x:40%;--y:60%;--c:#7a4220;--r:-30deg"></i>
+          <i style="--x:66%;--y:50%;--c:#f2c230;--r:60deg"></i>
+          <i style="--x:24%;--y:28%;--c:#7b52c9;--r:-10deg"></i>
+          <i style="--x:52%;--y:26%;--c:#3f8f6a;--r:35deg"></i>
+          <i style="--x:28%;--y:72%;--c:#f2c230;--r:80deg"></i>
+          <i style="--x:58%;--y:74%;--c:#e2361f;--r:-60deg"></i>
+          <i style="--x:72%;--y:30%;--c:#e8e0cf;--r:10deg"></i>
+        </div>
+        <div class="g-body">
+          <span class="g-label">ガチャ</span>
+          <span class="g-knob"></span>
+          <span class="g-slot"><i class="g-cap" id="g-cap"></i></span>
+        </div>
+      </div>
+      <div class="gacha-out">
+        <span class="mono-h">ガチャ — RANDOM SONG</span>
+        <h3 data-i18n="shuffle.title">¿no sabes por dónde empezar?</h3>
+        <p class="hand-note small" data-i18n="shuffle.sub">gira la máquina de cápsulas y te toca una canción</p>
+        <div id="shuffle-out" aria-live="polite"></div>
+        <button class="btn sun" id="shuffle-btn" type="button" data-magnetic></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 ÁLBUM ============ -->
+<section class="section" id="album" data-hud="05">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">05</span><span>アルバム</span><i class="sh-line"></i><span>p.05</span></div>
+      <h2 class="sh-title"><span data-i18n="album.h2">último álbum</span></h2>
+      <p class="sh-note" data-i18n="album.sub">de principio a fin</p>
+    </header>
+    <div class="feature page reveal">
+      <div class="feature-art">
+        <div class="sleeve" id="sleeve" role="button" tabindex="0" aria-pressed="false" data-i18n-aria="vinyl.aria" aria-label="sacar el disco" data-cursor="💿">
+          <div class="vinyl"><svg class="vinyl-label" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#e2361f"/><path d="M8 15L11 20L14 15L17 20L20 15L23 20L26 15L29 20L32 15Z" fill="#fff8ec"/><path d="M8 25L11 21.5L14 25L17 21.5L20 25L23 21.5L26 25L29 21.5L32 25Z" fill="#fff8ec"/><circle cx="20" cy="20" r="1.6" fill="#1b1714"/></svg></div>
+          <div id="feature-cover"></div>
+        </div>
+        <p class="hand-note small" data-i18n="vinyl.hint">toca el disco 💿</p>
+      </div>
+      <div class="feature-info">
+        <span class="badge" data-i18n="album.badge">álbum · ya disponible</span>
+        <h3 id="feature-title"></h3>
+        <p class="meta" id="feature-meta"></p>
+        <p class="feature-note" id="feature-note"></p>
+        <div class="actions" id="feature-actions"></div>
+        <ol class="mini-tracks" id="feature-tracks"></ol>
+        <p class="debut" id="feature-debut"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 TODAS LAS CANCIONES ============ -->
+<section class="section tone-ink" id="canciones" data-hud="06">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">06</span><span>ソング</span><i class="sh-line"></i><span>p.06</span></div>
+      <h2 class="sh-title"><span data-i18n="songs.h2">todas las canciones</span></h2>
+      <p class="sh-note" data-i18n="songs.sub">su discografía entera, convertida en una onda</p>
+    </header>
+    <div class="wave-box reveal">
+      <div class="wave-read" id="wave-read" aria-live="polite"></div>
+      <div class="wave" id="wave"></div>
+      <div class="wave-axis" id="wave-axis" aria-hidden="true"></div>
+    </div>
+    <div class="songs-tools">
+      <label class="songs-search"><span aria-hidden="true">⌕</span><input type="search" id="song-q" data-i18n-placeholder="songs.q" data-i18n-aria="songs.q" placeholder="buscar canción…" autocomplete="off"></label>
+      <div class="seg" role="group" data-i18n-aria="songs.aria" aria-label="ordenar">
+        <button type="button" data-sort="date" aria-pressed="true" data-i18n="songs.sortDate">recientes</button>
+        <button type="button" data-sort="az" aria-pressed="false" data-i18n="songs.sortAz">a–z</button>
+        <button type="button" data-sort="len" aria-pressed="false" data-i18n="songs.sortLen">duración</button>
+      </div>
+      <span class="songs-count" id="songs-count"></span>
+    </div>
+    <ol class="songs" id="songs"></ol>
+  </div>
+</section>
+
+<!-- ============ 07 COLABORACIONES ============ -->
+<section class="section tone-mint" id="colabs" data-hud="07">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">07</span><span>コラボ</span><i class="sh-line"></i><span>p.07</span></div>
+      <h2 class="sh-title"><span data-i18n="collabs.h2">colaboraciones</span></h2>
+      <p class="sh-note" data-i18n="collabs.sub">con quién ha hecho canciones (según Spotify)</p>
+    </header>
+    <div class="collab-grid">
+      <div class="orbit reveal" id="orbit"></div>
+      <div class="collab-list" id="collab-cards"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 GALERÍA ============ -->
+<section class="section" id="galeria" data-hud="08">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">08</span><span>ギャラリー</span><i class="sh-line"></i><span>p.08</span></div>
+      <h2 class="sh-title"><span data-i18n="gallery.h2">galería</span></h2>
+      <p class="sh-note" data-i18n="gallery.sub">portadas y dibujos sobre la mesa</p>
+    </header>
+    <div class="wall-wrap">
+      <button class="hidden-hat hh-wall" type="button" data-hat="3" data-i18n-aria="hunt.aria" aria-label="gorro escondido"><svg aria-hidden="true"><use href="#sym-hat"/></svg></button>
+      <button class="btn small ghost wall-btn" id="scatter-btn" type="button" data-magnetic><span aria-hidden="true">🔀</span> <span data-i18n="gallery.scatter">desordenar</span></button>
+      <div class="wall" id="wall"></div>
+    </div>
+    <p class="hand-note small center" data-i18n="gallery.hint">arrastra las fotos · toca una para verla</p>
+  </div>
+</section>
+
+<!-- ============ 09 DISCOGRAFÍA ============ -->
+<section class="section" id="discografia" data-hud="09">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">09</span><span>ディスコグラフィー</span><i class="sh-line"></i><span>p.09</span></div>
+      <h2 class="sh-title"><span data-i18n="discog.h2">discografía</span></h2>
+      <p class="sh-note" data-i18n="discog.sub">toca una portada para ver las canciones</p>
+    </header>
+    <div class="disc-tools">
+      <div class="tabs" role="group" data-i18n-aria="filter.aria" aria-label="filtro">
+        <button type="button" data-filter="all" aria-pressed="true" data-i18n="filter.all">todo</button>
+        <button type="button" data-filter="album" aria-pressed="false" data-i18n="filter.album">álbumes</button>
+        <button type="button" data-filter="single" aria-pressed="false" data-i18n="filter.single">EPs y sencillos</button>
+        <button type="button" data-filter="collab" aria-pressed="false" data-i18n="filter.collab">colabs</button>
+      </div>
+      <div class="disc-right">
+        <span id="disc-summary"></span>
+        <div class="view-toggle" role="group" data-i18n-aria="view.aria" aria-label="vista">
+          <button type="button" data-view="grid" aria-pressed="true" data-i18n-aria="view.grid" aria-label="cuadrícula"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="7" height="7"/><rect x="11" y="2" width="7" height="7"/><rect x="2" y="11" width="7" height="7"/><rect x="11" y="11" width="7" height="7"/></svg></button>
+          <button type="button" data-view="list" aria-pressed="false" data-i18n-aria="view.list" aria-label="lista"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4h16M2 10h16M2 16h16"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="rel-grid" id="rel-grid" data-view="grid">
+      {% for r in artist.releases %}<a class="rel-card" href="{{ 'https://open.spotify.com/album/' ~ r.album if r.album else 'https://open.spotify.com/artist/' ~ artist.spotify_id }}"><span class="rel-title">{{ r.title }}</span> <span class="rel-meta">{{ r.year }}{% if r.by %} · {{ r.by }} × zardy{% endif %} · {{ r.tracks|length }} canciones</span></a>
+      {% endfor %}</div>
+    <div class="disc-end"><button class="hidden-hat hh-disc" type="button" data-hat="4" data-i18n-aria="hunt.aria" aria-label="gorro escondido"><svg aria-hidden="true"><use href="#sym-hat"/></svg></button></div>
+  </div>
+</section>
+
+<!-- ============ 10 MALASIA, AHORA ============ -->
+<section class="section sky" id="malasia" data-hud="10" data-sky="day">
+  <div class="sky-bg" aria-hidden="true"><i class="sky-stars"></i><i class="sky-orb" id="sky-orb"><b></b></i><span class="sky-utc">UTC+8</span></div>
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">10</span><span>マレーシア</span><i class="sh-line"></i><span>p.10</span></div>
+      <h2 class="sh-title"><span data-i18n="mal.h2">su cuarto, ahora</span></h2>
+      <p class="sh-note" data-i18n="mal.sub">la hora en Malasia, en vivo</p>
+    </header>
+    <div class="mal-grid">
+      <div class="mal-copy reveal">
+        <span class="mono-h" data-i18n="mal.tz">MYT · UTC+8</span>
+        <p class="mal-now"><span data-i18n="mal.now">en Malasia son las</span> <b id="mal-time">--:--</b></p>
+        <p class="mal-sky" id="mal-sky"></p>
+        <p class="mal-diff" id="mal-diff"></p>
+        <p class="mal-here"><span data-i18n="mal.here">donde estás tú:</span> <b id="mal-local">--:--</b></p>
+      </div>
+      <div class="clock reveal" aria-hidden="true">
+        <svg viewBox="0 0 300 300">
+          <circle cx="150" cy="150" r="140" class="ck-face"/>
+          <circle cx="150" cy="150" r="126" class="ck-inner"/>
+          <g id="ck-ticks"></g>
+          <text x="150" y="62" class="ck-num">12</text><text x="242" y="161" class="ck-num">3</text><text x="150" y="258" class="ck-num">6</text><text x="58" y="161" class="ck-num">9</text>
+          <text x="150" y="208" class="ck-kana">ザルディ</text>
+          <g class="ck-hand" id="ck-h"><line x1="150" y1="158" x2="150" y2="92" class="ck-hl"/></g>
+          <g class="ck-hand" id="ck-m"><line x1="150" y1="160" x2="150" y2="58" class="ck-ml"/></g>
+          <g class="ck-hand" id="ck-s"><line x1="150" y1="176" x2="150" y2="44" class="ck-sl"/><circle cx="150" cy="44" r="6" class="ck-sd"/></g>
+          <use href="#sym-hat" x="129" y="131" width="42" height="39"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 FAN ZONE: haz tu portada ============ -->
+<section class="section tone-red" id="fanzone" data-hud="11">
+  <div class="halftone" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">11</span><span>ファンゾーン</span><i class="sh-line"></i><span>p.11</span></div>
+      <h2 class="sh-title"><span data-i18n="fan.h2">haz tu portada</span></h2>
+      <p class="sh-note" data-i18n="fan.sub">arma tu propio póster de zardy y descárgalo</p>
+    </header>
+    <div class="maker ink-dark reveal">
+      <div class="maker-preview"><canvas id="poster" width="1080" height="1350" role="img" data-i18n-aria="fan.alt" aria-label="vista previa del póster"></canvas></div>
+      <div class="maker-ctrl">
+        <div class="mk-row"><span class="mono-h" data-i18n="fan.style">estilo</span><div class="seg" id="mk-style"></div></div>
+        <div class="mk-row"><span class="mono-h" data-i18n="fan.paper">papel</span><div class="swatches" id="mk-paper"></div></div>
+        <div class="mk-row"><span class="mono-h" data-i18n="fan.ink">tinta</span><div class="swatches" id="mk-ink"></div></div>
+        <label class="mk-row"><span class="mono-h" data-i18n="fan.song">canción</span><select id="mk-song"></select></label>
+        <label class="mk-row"><span class="mono-h" data-i18n="fan.name">tu nombre</span><input id="mk-name" maxlength="22" autocomplete="off" data-i18n-placeholder="fan.namePh" placeholder="tu nombre"></label>
+        <div class="mk-actions">
+          <button class="btn ghost" type="button" id="mk-shuffle" data-magnetic>🎲 <span data-i18n="fan.shuffle">al azar</span></button>
+          <button class="btn" type="button" id="mk-download" data-magnetic>⬇ <span data-i18n="fan.download">descargar PNG</span></button>
+        </div>
+        <p class="mk-note" id="mk-note" data-i18n="fan.note">Se genera en tu navegador: no se sube nada a ningún lado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12 FAQ ============ -->
+<section class="section" id="faq" data-hud="12">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">12</span><span>しつもん</span><i class="sh-line"></i><span>p.12</span></div>
+      <h2 class="sh-title"><span data-i18n="faq.h2">preguntas</span></h2>
+      <p class="sh-note" data-i18n="faq.sub">lo básico, sin vueltas</p>
+    </header>
+    <div class="faq-list reveal">
+      <details class="qa" open><summary><i>Q.01</i><span data-i18n="faq.q1">¿Quién es zardy?</span></summary><p data-i18n="faq.a1">Un artista independiente de Malasia que hace indie / alt rock desde su cuarto. Su música creció gracias a fan-edits en TikTok. Tiene dos álbumes: “baby steps.” (marzo de 2026) y “contemplating” (septiembre de 2026).</p></details>
+      <details class="qa"><summary><i>Q.02</i><span data-i18n="faq.q2">¿Por dónde empiezo?</span></summary><p data-i18n="faq.a2">Por “it be okay”: es la canción que trajo a más gente. Si quieres un álbum entero, “contemplating” es lo más nuevo y “baby steps.” dura menos de 18 minutos. O gira la máquina de cápsulas en “el sonido”.</p></details>
+      <details class="qa"><summary><i>Q.03</i><span data-i18n="faq.q3">¿Qué es corecore y losercore?</span></summary><p data-i18n="faq.a3">Etiquetas de internet. El corecore es un estilo de edits que mezcla videos para hablar de emociones y de la vida online; el losercore es una estética melancólica sobre sentirse fuera de lugar. Aquí sirven para describir el ambiente de su música.</p></details>
+      <details class="qa"><summary><i>Q.04</i><span data-i18n="faq.q4">¿Y ese gorro?</span></summary><p data-i18n="faq.a4">El gorro marrón con boca de monstruo sale en su foto de perfil y en casi todas sus portadas, así que es lo más parecido a un logo que tiene. Por eso está por toda la página (sí, también abajo a la derecha… tócalo).</p></details>
+      <details class="qa"><summary><i>Q.05</i><span data-i18n="faq.q5">¿Tiene shows?</span></summary><p data-i18n="faq.a5">Por ahora no hay fechas anunciadas. Si las anuncia, aparecerán en la sección “shows”.</p></details>
+      <details class="qa"><summary><i>Q.06</i><span data-i18n="faq.q6">¿Esta página es oficial?</span></summary><p data-i18n="faq.a6">No. Es una fan page no oficial; los datos salen de Spotify y de lo que el artista ha publicado.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13 SHOWS ============ -->
+<section class="section tone-sun" id="shows" data-hud="13">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">13</span><span>ライブ</span><i class="sh-line"></i><span>p.13</span></div>
+      <h2 class="sh-title"><span data-i18n="shows.h2">shows</span></h2>
+      <p class="sh-note" data-i18n="shows.sub">fechas en vivo, cuando las haya</p>
+    </header>
+    <div class="flyer ink-dark reveal">
+      <svg class="scene" viewBox="0 0 480 260" role="img" data-i18n-aria="shows.sceneAlt" aria-label="dibujo: zardy tocando la guitarra frente a sus fans">
+        <rect width="480" height="260" class="sc-sky"/>
+        <g class="sc-sun">
+          <circle cx="446" cy="18" r="40" class="sc-sunball"/>
+          <path d="M392 26l-18 4M398 52l-14 12M424 70l-6 18M452 70l2 18" class="sc-ray"/>
+          <path d="M426 22l4 8M444 18l4 8M428 40c8 6 18 4 24-4" class="sc-ink"/>
+        </g>
+        <path d="M0 196C110 176 300 206 480 184V260H0Z" class="sc-grass"/>
+        <g class="sc-ink"><path d="M110 138v52M110 190l-14 38M110 190l14 38M110 152l-24 18M110 152l22 22"/></g>
+        <circle cx="110" cy="122" r="17" class="sc-skin"/>
+        <path d="M89 126C86 98 100 86 110 86S134 98 131 126C127 132 124 124 124 116H96C96 124 93 132 89 126Z" class="sc-hat"/>
+        <rect x="102" y="94" width="16" height="9" rx="1.5" class="sc-mouth"/>
+        <path d="M103 95.5l2 3.5 2-3.5 2 3.5 2-3.5 2 3.5 2-3.5 2 3.5" class="sc-teeth"/>
+        <path d="M104 121v1M116 121v1M103 128c4 4 10 4 14 0" class="sc-ink"/>
+        <g class="sc-guitar">
+          <path d="M60 150l52 24" class="sc-ink thick"/>
+          <path d="M52 144l10 4-3 6-10-4z" class="sc-ink fillink"/>
+          <path d="M112 166c10-6 24-2 26 8 2 8-4 12-2 18 2 8-8 14-18 10-12-4-14-10-20-12-8-4-6-16 4-18 4 0 6-2 10-6z" class="sc-guitarbody"/>
+          <circle cx="118" cy="182" r="4" class="sc-ink fillink"/>
+        </g>
+        <g class="sc-fan" style="--o:262px 150px">
+          <path d="M262 150v40M262 190l-12 36M262 190l12 36" class="sc-ink"/>
+          <path class="arms sc-ink" d="M240 118l22 32 22-32"/>
+          <circle cx="262" cy="134" r="15" class="sc-skin"/>
+          <path d="M247 130c0-14 30-14 30 0-10-6-20-6-30 0z" class="sc-hair"/>
+          <path d="M256 136c3 4 9 4 12 0" class="sc-ink"/>
+        </g>
+        <g class="sc-fan f2" style="--o:330px 140px">
+          <path d="M330 140v46M330 186l-12 40M330 186l12 40" class="sc-ink"/>
+          <path class="arms sc-ink" d="M306 104l24 36 24-36"/>
+          <circle cx="330" cy="122" r="16" class="sc-skin"/>
+          <path d="M313 116l4-12 6 6 6-10 6 10 6-6 4 12c-10-4-22-4-32 0z" class="sc-hair"/>
+          <path d="M323 126c4 5 10 5 14 0" class="sc-ink"/>
+        </g>
+        <g class="sc-fan f3" style="--o:392px 162px">
+          <path d="M392 162v34M392 196l-10 30M392 196l10 30" class="sc-ink"/>
+          <path class="arms sc-ink" d="M374 136l18 26 18-26"/>
+          <circle cx="392" cy="148" r="13" class="sc-skin"/>
+          <path d="M378 145c-2-12 26-14 28 0h6c-8-14-30-14-34 0z" class="sc-hair"/>
+          <path d="M387 150c3 3 7 3 10 0" class="sc-ink"/>
+        </g>
+        <g class="sc-fan f4" style="--o:444px 146px">
+          <path d="M444 146v44M444 190l-12 36M444 190l12 36" class="sc-ink"/>
+          <path class="arms sc-ink" d="M422 112l22 34 22-34"/>
+          <circle cx="444" cy="128" r="15" class="sc-skin"/>
+          <path d="M429 124c2-12 28-12 30 0-4-4-26-4-30 0z" class="sc-hair"/>
+          <path d="M438 131c3 4 9 4 12 0" class="sc-ink"/>
+        </g>
+        <text x="40" y="40" class="sc-label">zardy</text>
+        <path d="M66 50c10 10 18 20 28 32m0 0l-1-10m1 10l-10-3" class="sc-ink"/>
+        <text x="250" y="42" class="sc-label">zardy fans</text>
+        <path d="M300 52c6 14 10 26 18 38m0 0l1-10m-1 10l-9-5" class="sc-ink"/>
+        <text x="166" y="150" class="sc-label smaller" id="sc-you">tú →</text>
+      </svg>
+      <div class="flyer-text">
+        <span class="badge" data-i18n="shows.badge">en vivo</span>
+        <strong data-i18n="shows.title">sin shows anunciados (todavía)</strong>
+        <p data-i18n="shows.body">zardy no ha anunciado fechas en vivo. Cuando lo haga, esta sección se actualiza. Mientras tanto, así nos lo imaginamos.</p>
+      </div>
+    </div>
+
+    <div class="slip ink-dark reveal">
+      <button class="hidden-hat hh-slip" type="button" data-hat="5" data-i18n-aria="hunt.aria" aria-label="gorro escondido"><svg aria-hidden="true"><use href="#sym-hat"/></svg></button>
+      <div>
+        <h3 data-i18n="newsletter.h3">déjame tu correo</h3>
+        <p data-i18n="newsletter.p">Para avisos de nuevos lanzamientos y shows. Es una demo de fan: tu correo no se guarda ni se envía a ningún lado.</p>
+        <div id="newsletter-msg" role="status"></div>
+      </div>
+      <form class="slip-form" id="newsletter-form">
+        <input type="email" required id="newsletter-email" data-i18n-aria="newsletter.aria" aria-label="tu correo" data-i18n-placeholder="newsletter.placeholder" placeholder="tu@email.com" autocomplete="off">
+        <button class="btn" type="submit" data-i18n="newsletter.btn">unirme</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 ESCUCHA ============ -->
+<section class="section tone-ink" id="escucha" data-hud="14">
+  <div class="wrap">
+    <header class="sh reveal">
+      <div class="sh-top"><span class="sh-no">14</span><span>きいて</span><i class="sh-line"></i><span>p.14</span></div>
+      <h2 class="sh-title"><span data-i18n="listen.h2">escúchalo</span></h2>
+      <p class="sh-note" data-i18n="listen.sub">perfiles verificados</p>
+    </header>
+    <div class="tickets reveal" id="social-grid"></div>
+    <div class="search-row">
+      <p><span data-i18n="listen.search">también búscalo en</span> · <span data-i18n="listen.searchNote">son búsquedas, no perfiles verificados</span></p>
+      <div class="chips" id="search-chips"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer tone-red" data-hud="fin">
+  <div class="thanks" aria-hidden="true"><div class="tape-track" data-marquee="1" id="thanks-track"></div></div>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <svg class="foot-hat" aria-hidden="true"><use href="#sym-hat"/></svg>
+      <div>
+        <b>zardy <span lang="ja">ザルディ</span></b>
+        <span data-i18n="footer.made">hecho por un fan, a mano y con mucho cariño</span>
+      </div>
+    </div>
+    <nav class="foot-index" id="foot-index" aria-label="índice"></nav>
+    <div class="foot-meta">
+      <div class="barcode" id="foot-barcode" aria-hidden="true"></div>
+      <span id="foot-disclaimer"></span>
+      <div class="foot-links">
+        <a href="#top" data-i18n="footer.top">volver arriba ↑</a>
+        <a href="https://open.spotify.com/artist/{{ artist.spotify_id }}" target="_blank" rel="noopener" data-i18n="footer.cta">escuchar en Spotify →</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-mega" id="foot-mega" aria-hidden="true"><span>ZARDY</span></div>
+</footer>
+
+<!-- modal de lanzamiento -->
+<dialog id="rel-dialog" aria-labelledby="dlg-title" data-lenis-prevent>
+  <div class="dlg-inner">
+    <button class="dlg-close" id="dlg-close" type="button" data-i18n-aria="dlg.close" aria-label="cerrar">✕</button>
+    <div id="dlg-body"></div>
+  </div>
+</dialog>
+
+<dialog id="lightbox" aria-label="imagen"><figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure></dialog>
+
+<!-- reproductor flotante -->
+<aside class="dock" id="dock" hidden data-i18n-aria="dock.aria" aria-label="reproductor">
+  <div class="dock-head">
+    <span class="dock-now"><i class="dock-eq" aria-hidden="true"><b></b><b></b><b></b></i><span data-i18n="dock.now">sonando</span> · <b id="dock-title"></b></span>
+    <button class="dock-close" id="dock-close" type="button" data-i18n-aria="dock.close" aria-label="cerrar reproductor">✕</button>
+  </div>
+  <div id="dock-embed"></div>
+</aside>
+
+<!-- la mascota (el gorro) -->
+<div class="mascot" id="mascot">
+  <div class="bubble" id="bubble" role="status" aria-live="polite"></div>
+  <button class="mascot-btn" id="mascot-btn" type="button" data-i18n-aria="mascot.aria" aria-label="el gorro de zardy" data-cursor="hi!">
+    <svg viewBox="0 0 120 112" aria-hidden="true">
+      <g stroke="#1b1714" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M18 50C12 70 12 92 22 102C30 108 40 100 39 88L38 58Z" fill="#4b2711"/>
+        <path d="M102 50C108 70 108 92 98 102C90 108 80 100 81 88L82 58Z" fill="#4b2711"/>
+        <path d="M12 60C8 26 34 8 60 8C86 8 112 26 108 60C90 70 30 70 12 60Z" fill="#7a4220"/>
+        <path d="M26 34C30 22 40 15 52 13" fill="none" stroke="#a8652f" stroke-width="4"/>
+      </g>
+      <g class="m-mouth">
+        <rect x="38" y="36" width="44" height="20" rx="3" fill="#e2361f" stroke="#1b1714" stroke-width="3.5"/>
+        <path d="M40 38.5L45 46L50 38.5L55 46L60 38.5L65 46L70 38.5L75 46L80 38.5Z" fill="#fff8ec"/>
+        <path d="M40 54L45 49.5L50 54L55 49.5L60 54L65 49.5L70 54L75 49.5L80 54Z" fill="#fff8ec"/>
+      </g>
+      <g class="m-eyes"><circle cx="44" cy="27" r="4" fill="#1b1714"/><circle cx="76" cy="27" r="4" fill="#1b1714"/></g>
+    </svg>
+  </button>
+</div>
+
+<noscript><p class="noscript">Esta página necesita JavaScript para mostrar la discografía. / This page needs JavaScript.</p></noscript>
+
+<script id="zardy-data" type="application/json">{{ artist|tojson }}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>
